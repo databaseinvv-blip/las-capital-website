@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Bundled Page</title>
+  <title>LAS Capital</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { background: #faf9f5; display: flex; align-items: center; justify-content: center; min-height: 100vh; font-family: -apple-system, BlinkMacSystemFont, sans-serif; }
@@ -185,6 +185,52 @@ document.addEventListener('DOMContentLoaded', async function() {
     if (window.Babel && typeof window.Babel.transformScriptTags === 'function') {
       window.Babel.transformScriptTags();
     }
+
+    // --- LAS Capital: inject real photos into the image-slot placeholders ---
+    // Runs after the document has been swapped in. Each entry maps a slot id to
+    // an external image file that sits next to index.html in the repo. "cover"
+    // slots become a background-filled div (hero, banners, photos); "icon" slots
+    // become a contained <img>. Files that aren't present are simply skipped, so
+    // the remaining placeholders keep working until you add more photos.
+    (function injectLasImages() {
+      var IMAGES = [
+        { id: 'hero-photo',        file: 'hero.jpg',           mode: 'cover' },
+        { id: 'cta-banner',        file: 'cta-banner.jpg',     mode: 'cover' },
+        { id: 'about-teaser',      file: 'about-teaser.jpg',   mode: 'cover' },
+        { id: 'join-team',         file: 'join-team.jpg',      mode: 'cover' },
+        { id: 'team-group',        file: 'team-group.jpg',     mode: 'cover' },
+        { id: 'about-photo-1',     file: 'about-1.jpg',        mode: 'cover' },
+        { id: 'about-photo-2',     file: 'about-2.jpg',        mode: 'cover' },
+        { id: 'svc-icon-portfolio',file: 'icon-portfolio.png', mode: 'icon'  },
+        { id: 'svc-icon-cash',     file: 'icon-cash.png',      mode: 'icon'  },
+        { id: 'svc-icon-credit',   file: 'icon-credit.png',    mode: 'icon'  }
+      ];
+      function apply() {
+        IMAGES.forEach(function(item) {
+          var el = document.getElementById(item.id);
+          if (!el || el.getAttribute('data-las-filled')) return;
+          var repl;
+          if (item.mode === 'icon') {
+            repl = document.createElement('img');
+            repl.src = item.file;
+            repl.alt = '';
+            repl.style.cssText = (el.getAttribute('style') || '') +
+              ';width:100%;height:100%;object-fit:contain;display:block';
+          } else {
+            repl = document.createElement('div');
+            repl.style.cssText = (el.getAttribute('style') || '') +
+              ';background-image:url("' + item.file + '")' +
+              ';background-size:cover;background-position:center;background-repeat:no-repeat';
+          }
+          repl.setAttribute('data-las-filled', '1');
+          el.parentNode.replaceChild(repl, el);
+        });
+      }
+      // Try now, and once more shortly after in case slots hydrate late.
+      apply();
+      setTimeout(apply, 400);
+      setTimeout(apply, 1500);
+    })();
   } catch (err) {
     setStatus('Error unpacking: ' + err.message);
     console.error('Bundle unpack error:', err);
