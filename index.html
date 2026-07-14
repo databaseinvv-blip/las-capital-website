@@ -400,7 +400,7 @@
         </div>
       </sc-for>
     </div>
-    <div style="font-size:12.5px;color:rgba(26,29,34,.5);margin-top:36px" data-reveal="">Annualized as of February 2026. Annual returns represent active investments during the year. Past performance is not indicative of future results.</div>
+    <div style="font-size:12.5px;color:rgba(26,29,34,.5);margin-top:36px" data-reveal="">Annual returns represent active investments during the year. Past performance is not indicative of future results.</div>
   </div>
   </sc-if>
 
@@ -1296,10 +1296,10 @@ class Component extends DCLogic {
 
   news() {
     return [
-      { id: 'news-1', type: 'article', category: 'Market Outlook', title: "Q2'2026 Market Outlook | Managing Converging Risks", date: 'Apr 01, 2026', iso: '2026-04-01' },
-      { id: 'news-3', type: 'article', category: 'Market Review', title: 'Monthly Market Review | February 2026', date: 'Mar 04, 2026', iso: '2026-03-04' },
-      { id: 'news-4', type: 'article', category: 'Geopolitics', title: 'Middle East Tensions | Market Implications', date: 'Mar 02, 2026', iso: '2026-03-02' },
-      { id: 'news-5', type: 'article', category: 'Sector Spotlight', title: 'Healthcare Resilience in a Slowing Cycle', date: 'Feb 18, 2026', iso: '2026-02-18' },
+      <!-- { id: 'news-1', type: 'article', category: 'Market Outlook', title: "Q2'2026 Market Outlook | Managing Converging Risks", date: 'Apr 01, 2026', iso: '2026-04-01' }, -->
+      <!-- { id: 'news-3', type: 'article', category: 'Market Review', title: 'Monthly Market Review | February 2026', date: 'Mar 04, 2026', iso: '2026-03-04' },-->
+      <!-- { id: 'news-4', type: 'article', category: 'Geopolitics', title: 'Middle East Tensions | Market Implications', date: 'Mar 02, 2026', iso: '2026-03-02' },-->
+      <!-- { id: 'news-5', type: 'article', category: 'Sector Spotlight', title: 'Healthcare Resilience in a Slowing Cycle', date: 'Feb 18, 2026', iso: '2026-02-18' },-->
       { id: 'ann-jun26', type: 'announcement', category: 'Dividend Distribution', title: 'June 2026 Income Distribution', date: 'Jun 2026', iso: '2026-06-30',
         summary: '50% of expected return · 10%–12% p.a. funds · MYR & Multicurrency',
         body: "For the distribution period ending June 2026, income distributions are declared across the Fund's multiple sub-funds, each carrying its own expected annual return — ranging from 10% per annum to 12% per annum. In line with the Fund's semi-annual schedule, every Unit Holder receives 50% of their respective expected annual return for this period. Distributions apply to both the MYR and Multicurrency classes." },
@@ -1505,7 +1505,7 @@ class Component extends DCLogic {
         { value: 'RM100M', label: 'Fund Size' },
         { value: '10% p.a.', label: 'Annual Distribution' },
         { value: '9', label: 'Industries Cover' },
-        { value: '18.5%', label: 'Annualized Return' },
+        { value: '22.7%', label: 'Annual Return Since 2024 Inception' },
         { value: '10++', label: 'Active Investment' },
         { value: '90%', label: 'Deployment Ratio' }
       ],
@@ -1522,8 +1522,8 @@ class Component extends DCLogic {
       ],
       annualReturns: [
         { value: '27.4%', label: 'Annual Return · 2024' },
-        { value: '18.1%', label: 'Annual Return · 2025' },
-        { value: '18.5%', label: 'Annual Return · 2026' }
+        { value: '18.1%', label: 'Annual Return · 2025' }
+        
       ],
       sectors: [
         { name: 'Healthcare', pct: 41, pctLabel: '41%' },
