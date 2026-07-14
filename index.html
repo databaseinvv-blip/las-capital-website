@@ -860,7 +860,7 @@
           </sc-for>
         </div>
       </div>
-      <div style="font-size:12px;color:rgba(26,29,34,.45);margin-top:36px;line-height:1.7" data-reveal="">1. The annualized annual return is calculated as of February 2026.&nbsp;&nbsp; 2. Represents the annual return of the active investment during the year.</div>
+      <div style="font-size:12px;color:rgba(26,29,34,.45);margin-top:36px;line-height:1.7" data-reveal="">Annual returns represent active investments during the year. Past performance is not indicative of future results.</div>
     </div>
   </div>
 
@@ -960,7 +960,7 @@
           </div>
         </div>
       </div>
-      <div style="font-size:12px;color:rgba(26,29,34,.45);margin-top:44px;line-height:1.7" data-reveal="">1. As of 11 March 2026. Fund composition charts based on capital deployed and may not sum to 100% due to rounding.&nbsp;&nbsp; 2. Vintage year represents the weighted-average at time of investment made.</div>
+      <div style="font-size:12px;color:rgba(26,29,34,.45);margin-top:44px;line-height:1.7" data-reveal="">1. Fund composition charts based on capital deployed and may not sum to 100% due to rounding.&nbsp;&nbsp; 2. Vintage year represents the weighted-average at time of investment made.</div>
     </div>
   </div>
 
@@ -1284,13 +1284,17 @@ class Component extends DCLogic {
 
   projects() {
     return [
-      { name: 'Coconut Plantation Operator', sector: 'Plantation', region: 'Malaysia', instrument: 'Private Equity', status: 'Active', desc: 'An investment-driven agribusiness cultivating coconut across multiple estates in Malaysia. The mandate focuses on land asset optimization, yield enhancement and integration into the downstream supply chain, applying institutional investment discipline to a traditional agricultural sector.' },
-      { name: 'Durian Plantation Venture', sector: 'Plantation', region: 'Malaysia', instrument: 'Private Equity', status: 'Active', desc: 'A premium durian plantation development positioned for the fast-growing regional export market. The investment covers estate development and orchard management, with value creation driven by maturing yield profiles and rising demand for premium cultivars.' },
-      { name: 'Listed Dental Services Group', sector: 'Healthcare', region: 'Hong Kong', instrument: 'Listed Equity', status: 'Active', desc: 'A dental services group listed on the Hong Kong Stock Exchange, operating a network of clinics serving a growing base of private-pay patients. The position provides exposure to resilient healthcare demand with the liquidity and governance standards of a public listing.' },
-      { name: 'Listed Creative & Lifestyle Group', sector: 'Consumer', region: 'Hong Kong', instrument: 'Listed Equity', status: 'Active', desc: 'A creative and lifestyle holding group listed on the Hong Kong Stock Exchange. The position was taken on a value basis, backing an established brand platform with recovery and growth prospects across its consumer-facing businesses.' },
-      { name: 'F&B Retail Chain', sector: 'Food & Beverage', region: 'Malaysia', instrument: 'Private Equity', status: 'Active', desc: 'A food and beverage retail concept with outlet operations in Malaysia. The investment supports outlet expansion, brand building and supply chain standardization, targeting the defensive, cash-generative economics of everyday dining.' },
-      { name: 'Wellness E-Commerce Brand', sector: 'Consumer Health', region: 'Regional', instrument: 'Private Equity', status: 'Active', desc: 'A direct-to-consumer e-commerce brand specialising in cooling patch and wellness products, sold across regional online marketplaces. The mandate backs a capital-light model with strong repeat-purchase dynamics and room for category extension.' },
-      { name: 'Smart Device Rental Platform', sector: 'Technology', region: 'Malaysia', instrument: 'Private Equity', status: 'Active', desc: 'A rental platform for PCs, laptops and smart devices serving businesses and consumers. Recurring subscription revenue and asset redeployment underpin the model, riding the shift from device ownership to device-as-a-service.' }
+      { name: 'Coconut Plantation Operator', sector: 'Plantation', region: 'Malaysia', instrument: 'Private Equity', status: 'Active', rpu: 'RM - / unit', desc: 'An investment-driven agribusiness cultivating coconut across multiple estates in Malaysia. The mandate focuses on land asset optimization, yield enhancement and integration into the downstream supply chain, applying institutional investment discipline to a traditional agricultural sector.' },
+      { name: 'Durian Plantation Venture', sector: 'Plantation', region: 'Malaysia', instrument: 'Private Equity', status: 'Active', rpu: 'RM 0.28 / unit', desc: 'A premium durian plantation development positioned for the fast-growing regional export market. The investment covers estate development and orchard management, with value creation driven by maturing yield profiles and rising demand for premium cultivars.' },
+      <!-- { name: 'Listed Dental Services Group', sector: 'Healthcare', region: 'Hong Kong', instrument: 'Listed Equity', status: 'Active', rpu: 'RM 0.03 / unit', desc: 'A dental services group listed on the Hong Kong Stock Exchange, operating a network of clinics serving a growing base of private-pay patients. The position provides exposure to resilient healthcare demand with the liquidity and governance standards of a public listing.' }, -->
+      { name: 'Listed Creative & Lifestyle Group', sector: 'Consumer', region: 'Hong Kong', instrument: 'Listed Equity', status: 'Active', rpu: 'RM 1.12 / unit', desc: 'A creative and lifestyle holding group listed on the Hong Kong Stock Exchange. The position was taken on a value basis, backing an established brand platform with recovery and growth prospects across its consumer-facing businesses.' },
+      { name: 'F&B Retail Chain', sector: 'Food & Beverage', region: 'Malaysia', instrument: 'Private Equity', status: 'Active', rpu: 'RM 0.22 / unit', desc: 'A food and beverage retail concept with outlet operations in Malaysia. The investment supports outlet expansion, brand building and supply chain standardization, targeting the defensive, cash-generative economics of everyday dining.' },
+      { name: 'Wellness E-Commerce Brand', sector: 'Consumer Health', region: 'Regional', instrument: 'Private Equity', status: 'Active', rpu: 'RM 0.17 / unit', desc: 'A direct-to-consumer e-commerce brand specialising in cooling patch and wellness products, sold across regional online marketplaces. The mandate backs a capital-light model with strong repeat-purchase dynamics and room for category extension.' },
+      { name: 'Smart Device Rental Platform', sector: 'Technology', region: 'Malaysia', instrument: 'Private Equity', status: 'Active', rpu: 'RM 0.51 / unit', desc: 'A rental platform for PCs, laptops and smart devices serving businesses and consumers. Recurring subscription revenue and asset redeployment underpin the model, riding the shift from device ownership to device-as-a-service.' }，
+      { name: 'Financial Service Platform', sector: 'Financial Services', region: 'Hong Kong', instrument: 'Private Equity', status: 'Active', rpu: 'RM 0.60 / unit', desc: 'A licensed loan company, established with a mission to empower customers through reliable and accessible financial services. The company provides a broad range of loan products, including personal loans, business loans, and mortgages. Each product is tailored to meet the specific needs of its target market, offering competitive interest rates and flexible repayment terms that appeal to a wide range of borrowers.
+' },
+      { name: 'Licensed Pawnbroking', sector: 'Financial Services', region: 'Malaysia', instrument: 'Private Equity', status: 'Active', rpu: 'RM 0.13 / unit', desc: 'A Sarawak-based financial services company specializing in Pajak Gadai (pawnbroking) operations in Kuching, providing regulated, short-term, asset-backed financing to individuals and micro–small enterprises.' },
+      { name: 'Property Developer', sector: 'Real Estate', region: 'Malaysia', instrument: 'Private Equity', status: 'Active', rpu: 'RM 0.08  / unit', desc: 'A Malaysia-incorporated company engaged in real estate activities, holding company activities, and real estate agency services based in Kuching, Sarawak.' }
     ];
   }
 
@@ -1526,9 +1530,10 @@ class Component extends DCLogic {
         
       ],
       sectors: [
-        { name: 'Healthcare', pct: 41, pctLabel: '41%' },
-        { name: 'Financial Service', pct: 29, pctLabel: '29%' },
-        { name: 'Property', pct: 13, pctLabel: '13%' },
+        { name: 'Healthcare', pct: 38, pctLabel: '38%' },
+        { name: 'Financial Service', pct: 27, pctLabel: '27%' },
+        { name: 'Consumer', pct: 12, pctLabel: '12%' },
+        { name: 'Real Estate', pct: 6, pctLabel: '6%' },
         { name: 'Plantation', pct: 11, pctLabel: '11%' },
         { name: 'Food & Beverage', pct: 4, pctLabel: '4%' },
         { name: 'Others', pct: 2, pctLabel: '2%' }
@@ -1537,7 +1542,7 @@ class Component extends DCLogic {
         { value: 'x 2.5', label: 'NAV Growth Multiple' },
         { value: '13.1%', label: 'Annual Income Distribution' },
         { value: '90%', label: 'Deployment Ratio' },
-        { value: '8', label: 'Active Investments' },
+        { value: '10++', label: 'Active Investments' },
         { value: '2 yrs', label: 'Avg Investment Age' },
         { value: '2', label: 'Geographic Regions' }
       ],
@@ -1569,18 +1574,19 @@ class Component extends DCLogic {
         ], bullets: [] }
       ],
       kpis: [
-        { value: '18.5%', label: 'Annual Return (Annualized)' },
+        { value: '22.7%', label: 'Annual Return Since Inception' },
         { value: 'x 2.5', label: 'NAV Growth Multiple' },
         { value: 'x 0.26', label: 'Realization Multiple (DPI)' },
         { value: '13.1%', label: 'Annual Income Distribution' }
       ],
       arSector: [
         { name: 'Healthcare', val: '15%' },
-        { name: 'Financial Service', val: '28%' },
-        { name: 'Property', val: '3%' },
-        { name: 'Plantation', val: '15%' },
+        { name: 'Financial Service', val: '30%' },
+        { name: 'Consumer', val: '36%' },
+        { name: 'Real Estate', val: '24%' },
+        { name: 'Plantation', val: '16%' },
         { name: 'Food & Beverage', val: '15%' },
-        { name: 'Others', val: '15%' }
+        { name: 'Others', val: '24%' }
       ],
       arAsset: [
         { name: 'Fixed Income Securities', val: '21.2%' },
@@ -1591,7 +1597,6 @@ class Component extends DCLogic {
       arYear: [
         { name: 'Year 2024', val: '27.4%' },
         { name: 'Year 2025', val: '18.1%' },
-        { name: 'Year 2026', val: '18.5%' }
       ],
       keyMetrics: [
         { value: '90%', label: 'Deployment Ratio' },
@@ -1607,10 +1612,11 @@ class Component extends DCLogic {
         { id: 'topsec-fb', label: 'Food & Beverage' }
       ],
       compSector: [
-        { name: 'Healthcare', val: '41%', c: '#C6A45C' },
-        { name: 'Financial Service', val: '29%', c: '#A9853B' },
-        { name: 'Property', val: '13%', c: '#7C6428' },
+        { name: 'Healthcare', val: '38%', c: '#C6A45C' },
+        { name: 'Financial Service', val: '27%', c: '#A9853B' },
+        { name: 'Consumer', val: '12%', c: '#7C6428' },
         { name: 'Plantation', val: '11%', c: '#3A4048' },
+        { name: 'Real Estate', val: '6%', c: '#C6A45C' },
         { name: 'F&B', val: '4%', c: '#5B6169' },
         { name: 'Others', val: '2%', c: '#9CA1A8' }
       ],
@@ -1623,7 +1629,7 @@ class Component extends DCLogic {
       compVintage: [
         { name: '2025', val: '74%', c: '#C6A45C' },
         { name: '2024', val: '19%', c: '#A9853B' },
-        { name: '2026', val: '7%', c: '#3A4048' }
+        <!-- { name: '2026', val: '7%', c: '#3A4048' } -->
       ],
       terms: [
         { label: 'Fund Size', value: 'RM100 million' },
