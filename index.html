@@ -472,7 +472,7 @@
           </a>
           </sc-if>
           <sc-if value="{{ n.isArticle }}" hint-placeholder-val="{{ true }}">
-          <a sc-camel-on-click="{{ n.go }}" style="cursor:pointer;position:relative;display:block;aspect-ratio:4/5;overflow:hidden;box-shadow:0 16px 40px rgba(26,29,34,.12);transition:transform .3s ease,box-shadow .3s ease" style-hover="transform:translateY(-5px);box-shadow:0 24px 54px rgba(26,29,34,.2)">
+          <a sc-camel-on-click="{{ n.go }}" style="cursor:pointer;position:relative;display:block;aspect-ratio:4/5;overflow:hidden;background:#12151A;box-shadow:0 16px 40px rgba(26,29,34,.12);transition:transform .3s ease,box-shadow .3s ease" style-hover="transform:translateY(-5px);box-shadow:0 24px 54px rgba(26,29,34,.2)">
             
             <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(10,12,15,.93) 8%,rgba(10,12,15,.4) 52%,rgba(10,12,15,.12) 100%);pointer-events:none"></div>
             <div style="position:absolute;left:0;right:0;bottom:0;padding:28px 26px;color:#F2EFE8;pointer-events:none">
@@ -1166,6 +1166,7 @@
 <!-- ==================== NEWSROOM ==================== -->
 <sc-if value="{{ isNewsroom }}" hint-placeholder-val="{{ false }}">
 <div data-screen-label="Newsroom">
+  <sc-if value="{{ showArticleList }}" hint-placeholder-val="{{ true }}">
   <div style="max-width:1240px;margin:0 auto;padding:170px 36px 0">
     <div style="font-size:12.5px;font-weight:600;letter-spacing:.3em;color:#A9853B;text-transform:uppercase;margin-bottom:18px;animation:lasFadeUp .8s ease both">Resources</div>
     <h1 style="font-family:'Archivo',sans-serif;font-weight:700;letter-spacing:-.01em;font-size:clamp(38px,4.4vw,58px);line-height:1.15;margin:0;animation:lasFadeUp .8s ease .15s both">Newsroom</h1>
@@ -1174,7 +1175,7 @@
   <div style="max-width:1240px;margin:0 auto;padding:64px 36px 120px">
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:28px" data-reveal="">
       <sc-for list="{{ articles }}" as="n" hint-placeholder-count="4">
-        <a sc-camel-on-click="{{ n.go }}" style="cursor:pointer;position:relative;display:block;aspect-ratio:4/3;overflow:hidden;box-shadow:0 16px 40px rgba(26,29,34,.1);transition:transform .3s ease,box-shadow .3s ease" style-hover="transform:translateY(-5px);box-shadow:0 24px 54px rgba(26,29,34,.2)">
+        <a sc-camel-on-click="{{ n.go }}" style="cursor:pointer;position:relative;display:block;aspect-ratio:4/3;overflow:hidden;background:#12151A;box-shadow:0 16px 40px rgba(26,29,34,.1);transition:transform .3s ease,box-shadow .3s ease" style-hover="transform:translateY(-5px);box-shadow:0 24px 54px rgba(26,29,34,.2)">
           
           <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(10,12,15,.93) 8%,rgba(10,12,15,.4) 52%,rgba(10,12,15,.12) 100%);pointer-events:none"></div>
           <div style="position:absolute;left:0;right:0;bottom:0;padding:30px 30px;color:#F2EFE8;pointer-events:none">
@@ -1186,6 +1187,124 @@
       </sc-for>
     </div>
   </div>
+  </sc-if>
+
+  <sc-if value="{{ showArticleDetail }}" hint-placeholder-val="{{ false }}">
+  <div style="max-width:860px;margin:0 auto;padding:150px 36px 0">
+    <a sc-camel-on-click="{{ backToNewsroom }}" style="cursor:pointer;display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(26,29,34,.55);animation:lasFadeUp .8s ease both" style-hover="color:#A9853B"><span style="font-size:17px">←</span> Back to Newsroom</a>
+    <div style="font-size:12.5px;font-weight:600;letter-spacing:.3em;color:#A9853B;text-transform:uppercase;margin:40px 0 18px;animation:lasFadeUp .8s ease .1s both">Market Outlook</div>
+    <h1 style="font-family:'Archivo',sans-serif;font-weight:700;letter-spacing:-.01em;font-size:clamp(30px,3.4vw,44px);line-height:1.22;margin:0;animation:lasFadeUp .8s ease .2s both">The Financing Escalator: Reading Bursa Malaysia's LEAP Market Reform</h1>
+    <div style="font-size:14px;color:rgba(26,29,34,.55);margin-top:20px;animation:lasFadeUp .8s ease .3s both">Newsroom &nbsp;·&nbsp; 29 May 2026 &nbsp;·&nbsp; Market Outlook</div>
+  </div>
+  <div style="max-width:860px;margin:0 auto;padding:44px 36px 120px">
+    <div style="height:1px;background:rgba(26,29,34,.12);margin-bottom:44px" data-reveal=""></div>
+
+    <div style="background:#F2EFE8;border:1px solid rgba(169,133,59,.35);border-left:3px solid #C6A45C;padding:24px 28px;margin-bottom:48px" data-reveal="">
+      <div style="font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#A9853B;margin-bottom:10px">Reference</div>
+      <p style="font-size:15px;line-height:1.7;color:rgba(26,29,34,.75);margin:0 0 14px">The full Consultation Paper No. 2/2026 and supporting documents are published on Bursa Malaysia's Public Consultation page. Readers can refer there for the complete details.</p>
+      <a href="https://www.bursamalaysia.com/regulation/public_consultation" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#A9853B" style-hover="color:#C6A45C">View on Bursa Malaysia <span style="font-size:15px">↗</span></a>
+    </div>
+
+    <div data-reveal="">
+      <h2 style="font-family:'Archivo',sans-serif;font-weight:700;font-size:26px;line-height:1.3;color:#1A1D22;margin:0 0 20px">I. What happened</h2>
+      <p style="font-size:16.5px;line-height:1.9;color:rgba(26,29,34,.75);margin:0 0 20px">On 18 May 2026, Bursa Malaysia issued Consultation Paper No. 2/2026 — a joint review with the Securities Commission Malaysia proposing amendments to the LEAP Market Listing Requirements, the ACE Market Listing Requirements, and the Rules and Directives of Bursa Malaysia Securities Berhad. Public comments closed on 15 June 2026.</p>
+      <p style="font-size:16.5px;line-height:1.9;color:rgba(26,29,34,.75);margin:0 0 20px">The paper is unusually candid about why. LEAP launched on 25 July 2017 as a fundraising platform for emerging companies, accessible only to Sophisticated Investors. In nearly nine years, 54 companies raised RM275,834,773 through initial listings. A further 12 listed by way of introduction. Nine have migrated to ACE, with two more applications underway. Fifty remain listed; eight have been delisted.</p>
+      <p style="font-size:16.5px;line-height:1.9;color:rgba(26,29,34,.75);margin:0 0 20px">New listings have slowed to a trickle — five in 2025, four in 2024.</p>
+      <p style="font-size:16.5px;line-height:1.9;color:rgba(26,29,34,.75);margin:0 0 20px">Bursa's own framing is that restricting the market to Sophisticated Investors "has naturally resulted in more modest trading activity." That is the diagnosis. The proposals are the treatment.</p>
+    </div>
+
+    <div data-reveal="">
+      <h2 style="font-family:'Archivo',sans-serif;font-weight:700;font-size:26px;line-height:1.3;color:#1A1D22;margin:48px 0 20px">II. The four structural changes</h2>
+      <h3 style="font-family:'Archivo',sans-serif;font-weight:700;font-size:19px;line-height:1.35;color:#1A1D22;margin:32px 0 14px">Retail investors, with limits</h3>
+      <p style="font-size:16.5px;line-height:1.9;color:rgba(26,29,34,.75);margin:0 0 20px">The most consequential proposal opens LEAP to retail investors — anyone who does not meet the SC's Sophisticated Investor criteria — subject to prescribed limits:</p>
+      <ul style="margin:0 0 20px;padding-left:22px;font-size:16.5px;line-height:1.85;color:rgba(26,29,34,.75)">
+        <li style="margin-bottom:8px">Maximum RM100,000 per subscription in an initial listing or secondary fundraising</li>
+        <li style="margin-bottom:8px">Maximum RM100,000 with each Participating Organisation for trading</li>
+        <li style="margin-bottom:8px">Total investment not exceeding RM250,000 at any time</li>
+      </ul>
+      <p style="font-size:16.5px;line-height:1.9;color:rgba(26,29,34,.75);margin:0 0 20px">The design mirrors the ECF framework, where retail investors are capped at RM10,000 per issuer and RM50,000 over twelve months. LEAP's thresholds sit higher because, as Bursa reasons, it is a public market with greater transparency and accessibility both at admission and post-listing.</p>
+      <p style="font-size:16.5px;line-height:1.9;color:rgba(26,29,34,.75);margin:0 0 20px">Two carve-outs matter. Investments by specified shareholders in their own corporation are excluded entirely — a controlling shareholder or founder has direct knowledge of the business, and capping their participation would work against their role in growing it. And pre-listing investments by other existing securities holders are excluded, since those positions arose from relationships that predate the listing.</p>
+      <p style="font-size:16.5px;line-height:1.9;color:rgba(26,29,34,.75);margin:0 0 20px">Compliance runs on a declaratory basis: the retail investor declares to their Participating Organisation that they will comply. If the PO later learns otherwise, it must stop the client from trading except to sell existing holdings. All investors — SI and retail alike — will now sign a risk disclosure statement before trading.</p>
+
+      <h3 style="font-family:'Archivo',sans-serif;font-weight:700;font-size:19px;line-height:1.35;color:#1A1D22;margin:32px 0 14px">The exit offer disappears</h3>
+      <p style="font-size:16.5px;line-height:1.9;color:rgba(26,29,34,.75);margin:0 0 20px">Under the current framework, a LEAP company transferring to ACE must request withdrawal of listing and offer shareholders an exit offer or equivalent mechanism. The logic was sound: LEAP is a qualified market with lighter requirements; ACE is open and more demanding; sophisticated investors deserved a fair way out if they didn't want to migrate.</p>
+      <p style="font-size:16.5px;line-height:1.9;color:rgba(26,29,34,.75);margin:0 0 20px">In practice, Bursa observed something else. In seven of nine past transfers, shareholders simply undertook not to accept the exit offer and to hold until completion. The Exchange granted waivers. The requirement had become a procedural cost — time-to-market, expense, administrative complexity — attached to an outcome nobody wanted.</p>
+      <p style="font-size:16.5px;line-height:1.9;color:rgba(26,29,34,.75);margin:0 0 20px">It is proposed for removal.</p>
+
+      <h3 style="font-family:'Archivo',sans-serif;font-weight:700;font-size:19px;line-height:1.35;color:#1A1D22;margin:32px 0 14px">A seven-year clock</h3>
+      <p style="font-size:16.5px;line-height:1.9;color:rgba(26,29,34,.75);margin:0 0 20px">Here is the trade. In exchange for the easier exit, Bursa proposes a new delisting criterion: a LEAP company that fails to apply for transfer to ACE within seven full financial years of admission — or whose transfer application is rejected — will be delisted.</p>
+      <p style="font-size:16.5px;line-height:1.9;color:rgba(26,29,34,.75);margin:0 0 20px">The number is not arbitrary. Of the nine completed transfers, LEAP tenure ranged from roughly 2 years 10 months to 7 years 4 months, with five falling between five and six years. Seven years, Bursa argues, allows time to develop the business and plan a transfer while reinforcing LEAP as a transitional venue rather than a long-term home.</p>
+      <p style="font-size:16.5px;line-height:1.9;color:rgba(26,29,34,.75);margin:0 0 20px">Disclosure obligations accompany the clock. Alongside the second semi-annual financial statements in the fifth financial year, a listed corporation must announce its transfer plans and the steps taken — or state that no such plan exists — and flag the delisting risk. Updates follow with each subsequent set of semi-annual statements.</p>
+      <p style="font-size:16.5px;line-height:1.9;color:rgba(26,29,34,.75);margin:0 0 20px">For companies already listed, Bursa proposes a transitional arrangement: the seven years would run from the effective date of the amendments, not the original admission date.</p>
+      <p style="font-family:'Archivo',sans-serif;font-weight:600;font-size:20px;line-height:1.5;color:#1A1D22;border-left:3px solid #C6A45C;padding:6px 0 6px 24px;margin:32px 0">This is the sentence in the deck we kept returning to at the offline session: listing is no longer the finish line — it starts a countdown.</p>
+
+      <h3 style="font-family:'Archivo',sans-serif;font-weight:700;font-size:19px;line-height:1.35;color:#1A1D22;margin:32px 0 14px">Share-based adviser fees</h3>
+      <p style="font-size:16.5px;line-height:1.9;color:rgba(26,29,34,.75);margin:0 0 20px">MSMEs face high fundraising costs, and listing compounds them — professional fees and compliance expenses, typically payable in cash, at exactly the moment capital is most useful elsewhere.</p>
+      <p style="font-size:16.5px;line-height:1.9;color:rgba(26,29,34,.75);margin:0 0 20px">Bursa proposes allowing advisers to take ordinary shares as part of their fee, subject to:</p>
+      <ul style="margin:0 0 20px;padding-left:22px;font-size:16.5px;line-height:1.85;color:rgba(26,29,34,.75)">
+        <li style="margin-bottom:8px">Share-based fee ≤ 50% of the adviser's total fees, and ≤ 2% of enlarged issued shares per adviser</li>
+        <li style="margin-bottom:8px">Aggregate across all advisers ≤ 5% of enlarged issued shares</li>
+        <li style="margin-bottom:8px">Six-month moratorium from admission on sale, transfer or assignment</li>
+        <li style="margin-bottom:8px">Adviser must remain independent under Rule 4.04 and manage conflicts</li>
+        <li style="margin-bottom:8px">Shares must not be priced below the issue or reference price</li>
+      </ul>
+      <p style="font-size:16.5px;line-height:1.9;color:rgba(26,29,34,.75);margin:0 0 20px">Names, share counts, percentages, issue prices and moratorium details all get disclosed in the listing document.</p>
+      <p style="font-size:16.5px;line-height:1.9;color:rgba(26,29,34,.75);margin:0 0 20px">The mechanism does two things at once: preserves the issuer's cash, and — in Bursa's words — better aligns the adviser's interests with the applicant's longer-term development after admission. An adviser holding stock has a reason to still be there in year three.</p>
+    </div>
+
+    <div data-reveal="">
+      <h2 style="font-family:'Archivo',sans-serif;font-weight:700;font-size:26px;line-height:1.3;color:#1A1D22;margin:48px 0 20px">III. The ECF green channel</h2>
+      <p style="font-size:16.5px;line-height:1.9;color:rgba(26,29,34,.75);margin:0 0 20px">Since 2015, ECF issuers have raised RM917.51 million across 445 campaigns. In 2025 alone, RM139.34 million — up 42.4% on 2024's RM97.84 million — driven by larger campaigns above RM3 million, which made up 45% of the total, against 34% the year before. There were 413 ECF issuers as at 31 December 2025.</p>
+      <p style="font-size:16.5px;line-height:1.9;color:rgba(26,29,34,.75);margin:0 0 20px">That momentum has had nowhere to go. Bursa proposes a direct pathway: an eligible ECF company may apply to LEAP without an Approved Adviser, provided that within seven years before submission it has:</p>
+      <ul style="margin:0 0 20px;padding-left:22px;font-size:16.5px;line-height:1.85;color:rgba(26,29,34,.75)">
+        <li style="margin-bottom:8px">Completed at least one equity fundraising exercise on the ECF platform hosting it; and</li>
+        <li style="margin-bottom:8px">Raised an aggregate of at least RM5 million — which may include raises with SC-registered VC/PE firms, or equivalent foreign-regulated managers</li>
+      </ul>
+      <p style="font-size:16.5px;line-height:1.9;color:rgba(26,29,34,.75);margin:0 0 20px">It must also be assessed suitable under Rule 4.10, secure a Continuing Adviser for at least one full financial year post-admission, and wait at least six months from its most recent ECF or VC/PE raise before submitting. That waiting period exists so investors can assess how prior proceeds were actually used.</p>
+      <p style="font-size:16.5px;line-height:1.9;color:rgba(26,29,34,.75);margin:0 0 20px">In place of an Approved Adviser, the ECF company appoints a listing agent — either the ECF operator that hosted it, or the SC-registered VC/PE firm of which it is an investee. The listing agent liaises with the Exchange and coordinates the admission process. Its role explicitly does not extend to corporate finance advisory: suitability, LEAP LR compliance, and advice on the admission itself remain outside its remit.</p>
+      <p style="font-size:16.5px;line-height:1.9;color:rgba(26,29,34,.75);margin:0 0 20px">That distinction is worth reading twice if you are an ECF issuer weighing this route.</p>
+    </div>
+
+    <div data-reveal="">
+      <h2 style="font-family:'Archivo',sans-serif;font-weight:700;font-size:26px;line-height:1.3;color:#1A1D22;margin:48px 0 20px">IV. From information memorandum to listing document</h2>
+      <p style="font-size:16.5px;line-height:1.9;color:rgba(26,29,34,.75);margin:0 0 20px">Today's information memorandum is meant to be principles-based and lighter than a prospectus. Market perception went the other way — because it carries prospectus-equivalent CMSA liability for false or misleading statements, it gets prepared like one. Cost follows perception.</p>
+      <p style="font-size:16.5px;line-height:1.9;color:rgba(26,29,34,.75);margin:0 0 20px">Bursa proposes re-designating it as a listing document in a prescribed, structured template (Annexure B1), covering: cover page and risk notification, indicative timetable, definitions, corporate directory, executive summary, offering details, group and business overview, risk factors, specified and substantial shareholders, directors and key management, related party transactions and conflicts, financial information, other information.</p>
+      <p style="font-size:16.5px;line-height:1.9;color:rgba(26,29,34,.75);margin:0 0 20px">The template may not be modified without the Exchange's approval. The requirement to deposit with the SC is removed — registration with the Exchange, concurrent with the listing application, is enough. CMSA liability remains.</p>
+      <p style="font-size:16.5px;line-height:1.9;color:rgba(26,29,34,.75);margin:0 0 20px">Related: some matters currently inside the Approved Adviser's suitability assessment move into disclosure instead. Conflicts of interest, systems and resources for LEAP LR compliance, internal controls and risk management would be addressed through the listing document — including a board statement confirming adequate internal controls, and details of any conflict-of-interest situation involving specified shareholders, directors or substantial shareholders. What stays prescribed in Rule 4.10: corporate governance track record, public interest, and adequacy of disclosures.</p>
+      <p style="font-size:16.5px;line-height:1.9;color:rgba(26,29,34,.75);margin:0 0 20px">There is also a proposed moratorium on pre-listing investors — a VC/PE firm, substantial shareholder, or person connected to either, who is not a specified shareholder — of six months from admission, where shares were acquired within twelve months on or before the listing application and below the issue or reference price.</p>
+    </div>
+
+    <div data-reveal="">
+      <h2 style="font-family:'Archivo',sans-serif;font-weight:700;font-size:26px;line-height:1.3;color:#1A1D22;margin:48px 0 20px">V. What this means, by reader</h2>
+      <p style="font-size:16.5px;line-height:1.9;color:rgba(26,29,34,.75);margin:0 0 20px"><strong style="color:#1A1D22">If you are an investor.</strong> The combination of retail participation and no exit offer changes the liquidity character of LEAP holdings. Price discovery moves from private round marks to a public tape. That cuts both ways: a real exit window opens, and a real mark-to-market arrives with it. The prescribed limits mean retail depth builds gradually rather than arriving all at once — this is a re-rating with a slope, not a step.</p>
+      <p style="font-size:16.5px;line-height:1.9;color:rgba(26,29,34,.75);margin:0 0 20px"><strong style="color:#1A1D22">If you run a portfolio company.</strong> The seven-year clock is the change to internalise. Once listed, transfer is not something to revisit later; it is a scheduled obligation with disclosure checkpoints starting in year five. And the Annexure B1 standard is worth building toward regardless of whether you list — it is becoming the reference grammar for how Malaysian SMEs describe themselves to capital.</p>
+      <p style="font-size:16.5px;line-height:1.9;color:rgba(26,29,34,.75);margin:0 0 20px"><strong style="color:#1A1D22">If you are thinking about exit rather than listing.</strong> Professional buyers will increasingly measure you against listed comparables and against the B1 disclosure bar. Companies that clear it get priced as capital assets. Companies that don't get priced as private ones — with the discount that implies. Preparing to the standard is worth doing even if you never file.</p>
+      <p style="font-size:16.5px;line-height:1.9;color:rgba(26,29,34,.75);margin:0 0 20px"><strong style="color:#1A1D22">A caution for everyone.</strong> Deeper retail participation in micro-caps means volatility that private marks previously concealed. The prescribed limits exist precisely because Bursa considers LEAP higher-risk. A liquid price is not automatically a higher price.</p>
+    </div>
+
+    <div data-reveal="">
+      <h2 style="font-family:'Archivo',sans-serif;font-weight:700;font-size:26px;line-height:1.3;color:#1A1D22;margin:48px 0 20px">VI. The next 90 days</h2>
+      <p style="font-size:16.5px;line-height:1.9;color:rgba(26,29,34,.75);margin:0 0 20px"><strong style="color:#1A1D22">1 — Audit against Annexure B1.</strong> 2–4 weeks. Reconcile financial statements and internal controls to the proposed disclosure standard. Identify related party transactions not on arm's length terms and the steps to resolve them — this is now a named disclosure item.</p>
+      <p style="font-size:16.5px;line-height:1.9;color:rgba(26,29,34,.75);margin:0 0 20px"><strong style="color:#1A1D22">2 — Restructure and ring-fence.</strong> 6–10 weeks. Separate core IP and high-value assets from the operating entity through a HoldCo structure. A cleaner balance sheet at the listing entity focuses the valuation.</p>
+      <p style="font-size:16.5px;line-height:1.9;color:rgba(26,29,34,.75);margin:0 0 20px"><strong style="color:#1A1D22">3 — Choose your partner.</strong> 2 weeks. Engage a PEMC registered with the SC, with in-market deal-sourcing capability across the regions where your targets actually sit.</p>
+    </div>
+
+    <div data-reveal="">
+      <h2 style="font-family:'Archivo',sans-serif;font-weight:700;font-size:26px;line-height:1.3;color:#1A1D22;margin:48px 0 20px">VII. The caveat that matters</h2>
+      <p style="font-size:16.5px;line-height:1.9;color:rgba(26,29,34,.75);margin:0 0 20px">These are proposals. Bursa states plainly that they have not been approved by the SC, that they remain open to public comment, and that the final amendments may differ from what was published. The Exchange will submit them to the SC after reviewing feedback and making changes where appropriate.</p>
+      <p style="font-family:'Archivo',sans-serif;font-weight:600;font-size:20px;line-height:1.5;color:#1A1D22;border-left:3px solid #C6A45C;padding:6px 0 6px 24px;margin:32px 0">Nothing here is a rule yet. Anyone telling you otherwise is selling something.</p>
+      <p style="font-size:16.5px;line-height:1.9;color:rgba(26,29,34,.75);margin:0 0 20px">What is not in doubt is the direction of travel. Easier in. Easier out. Faster graduation. Both regulators have now said so in the same document, and the Capital Market Masterplan 2026–2030 says it again at the level of national policy.</p>
+      <p style="font-size:16.5px;line-height:1.9;color:rgba(26,29,34,.75);margin:0 0 20px">The preparation window is open now, while the rules are still being written — which is a better time to get your house in order than the month everyone else discovers they need to.</p>
+    </div>
+
+    <div style="background:#0E1013;color:#F2EFE8;padding:40px 40px;margin-top:56px" data-reveal="">
+      <p style="font-size:16px;line-height:1.85;color:rgba(242,239,232,.82);margin:0 0 26px">LAS Capital is a private equity management company registered with the Securities Commission Malaysia, with local teams in Penang, Johor and East Malaysia. For a briefing tailored to your sector and region, contact our team.</p>
+      <a sc-camel-on-click="{{ goContact }}" style="cursor:pointer;display:inline-flex;align-items:center;gap:10px;background:#C6A45C;color:#0E1013;padding:15px 32px;font-weight:700;font-size:13.5px;letter-spacing:.1em;text-transform:uppercase" style-hover="background:#D8BC7A;color:#0E1013">Contact Our Team <span style="font-size:16px">→</span></a>
+    </div>
+
+    <div style="margin-top:44px;padding-top:28px;border-top:1px solid rgba(26,29,34,.12);font-size:13px;line-height:1.75;color:rgba(26,29,34,.5)" data-reveal="">This article is for informational purposes only and does not constitute investment advice, tax advice, or a solicitation of investments or securities. The proposals discussed are subject to change and have not been approved by the Securities Commission Malaysia. Prospective investors should undertake their own due diligence and consideration at their own risk.</div>
+  </div>
+  </sc-if>
 </div>
 </sc-if>
 
@@ -1266,10 +1385,10 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script="" data-props="{&quot;showPerformance&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Content&quot;}}">
 class Component extends DCLogic {
-  state = { page: 'home', openProject: -1, companyOpen: false, resourcesOpen: false, annPage: 1, openAnn: null };
+  state = { page: 'home', openProject: -1, companyOpen: false, resourcesOpen: false, annPage: 1, openAnn: null, openArticle: null };
 
   go(page) {
-    this.setState({ page, openAnn: null }, () => {
+    this.setState({ page, openAnn: null, openArticle: null }, () => {
       window.scrollTo(0, 0);
       requestAnimationFrame(() => this.setupReveals());
     });
@@ -1322,6 +1441,7 @@ class Component extends DCLogic {
 
   news() {
     return [
+      { id: 'art-leap', type: 'article', category: 'Market Outlook', title: "The Financing Escalator: Reading Bursa Malaysia's LEAP Market Reform", date: '29 May 2026', iso: '2026-05-29', summary: "Bursa Malaysia's Consultation Paper No. 2/2026 proposes retail access, a seven-year graduation clock and lower listing costs on the LEAP Market. What each change means, by reader." },
       <!-- { id: 'news-1', type: 'article', category: 'Market Outlook', title: "Q2'2026 Market Outlook | Managing Converging Risks", date: 'Apr 01, 2026', iso: '2026-04-01' }, -->
       <!-- { id: 'news-3', type: 'article', category: 'Market Review', title: 'Monthly Market Review | February 2026', date: 'Mar 04, 2026', iso: '2026-03-04' },-->
       <!-- { id: 'news-4', type: 'article', category: 'Geopolitics', title: 'Middle East Tensions | Market Implications', date: 'Mar 02, 2026', iso: '2026-03-02' },-->
@@ -1368,7 +1488,7 @@ class Component extends DCLogic {
   renderVals() {
     const p = this.state.page;
     const byDateDesc = (a, b) => b.iso.localeCompare(a.iso);
-    const all = this.news().map((n) => ({ ...n, go: () => { if (n.type === 'announcement') { this.setState({ page: 'announcements', openAnn: n.id }, () => { window.scrollTo(0, 0); requestAnimationFrame(() => this.setupReveals()); }); } else { this.go('newsroom'); } }, isArticle: n.type === 'article', isAnnouncement: n.type === 'announcement' }));
+    const all = this.news().map((n) => ({ ...n, go: () => { if (n.type === 'announcement') { this.setState({ page: 'announcements', openAnn: n.id }, () => { window.scrollTo(0, 0); requestAnimationFrame(() => this.setupReveals()); }); } else { this.setState({ page: 'newsroom', openArticle: n.id }, () => { window.scrollTo(0, 0); requestAnimationFrame(() => this.setupReveals()); }); } }, isArticle: n.type === 'article', isAnnouncement: n.type === 'announcement' }));
     const announcements = all.filter((n) => n.type === 'announcement').sort(byDateDesc).map((n) => ({
       ...n,
       readMore: () => { this.setState({ openAnn: n.id }, () => { window.scrollTo(0, 0); requestAnimationFrame(() => this.setupReveals()); }); }
@@ -1387,6 +1507,7 @@ class Component extends DCLogic {
       go: () => { this.setState({ annPage: i + 1 }, () => { window.scrollTo(0, 0); requestAnimationFrame(() => this.setupReveals()); }); }
     }));
     const articles = all.filter((n) => n.type === 'article').sort(byDateDesc);
+    const articleDetail = articles.find((a) => a.id === this.state.openArticle) || null;
     const newsHome = all.filter((n) => n.type === 'announcement' || n.type === 'article').sort(byDateDesc).slice(0, 4);
     return {
       announcements,
@@ -1398,6 +1519,10 @@ class Component extends DCLogic {
       showAnnList: !annDetail,
       backToAnnouncements: () => this.setState({ openAnn: null }),
       articles,
+      articleDetail: articleDetail || {},
+      showArticleDetail: !!articleDetail,
+      showArticleList: !articleDetail,
+      backToNewsroom: () => this.setState({ openArticle: null }, () => { window.scrollTo(0, 0); requestAnimationFrame(() => this.setupReveals()); }),
       documents: this.documents(),
       reports: this.reports(),
       newsHome,
