@@ -316,7 +316,7 @@
         <div style="position:absolute;top:100%;left:0;display:{{ resourcesMenuDisplay }};background:#171B21;border:1px solid rgba(198,164,92,.25);min-width:190px;box-shadow:0 14px 34px rgba(0,0,0,.4);padding:8px 0;z-index:20">
           <a sc-camel-on-click="{{ goAnnouncements }}" style="cursor:pointer;display:block;padding:13px 22px;color:rgba(242,239,232,.82);letter-spacing:.06em;font-size:13px" style-hover="background:rgba(198,164,92,.16);color:#C6A45C">Announcements</a>
           <a sc-camel-on-click="{{ goNewsroom }}" style="cursor:pointer;display:block;padding:13px 22px;color:rgba(242,239,232,.82);letter-spacing:.06em;font-size:13px" style-hover="background:rgba(198,164,92,.16);color:#C6A45C">Newsroom</a>
-          <a sc-camel-on-click="{{ goForms }}" style="cursor:pointer;display:block;padding:13px 22px;color:rgba(242,239,232,.82);letter-spacing:.06em;font-size:13px" style-hover="background:rgba(198,164,92,.16);color:#C6A45C">Forms</a>
+          <a sc-camel-on-click="{{ goForms }}" style="cursor:pointer;display:block;padding:13px 22px;color:rgba(242,239,232,.82);letter-spacing:.06em;font-size:13px" style-hover="background:rgba(198,164,92,.16);color:#C6A45C">Documents</a>
         </div>
       </div>
       <a sc-camel-on-click="{{ goContact }}" style="cursor:pointer;border:1px solid #C6A45C;color:#C6A45C;padding:11px 24px;letter-spacing:.1em;font-size:12.5px;white-space:nowrap" style-hover="background:#C6A45C;color:#0E1013">Investor Enquiry</a>
@@ -1186,16 +1186,34 @@
 
 <!-- ==================== FORMS ==================== -->
 <sc-if value="{{ isForms }}" hint-placeholder-val="{{ false }}">
-<div data-screen-label="Forms">
+<div data-screen-label="Documents">
   <div style="max-width:1240px;margin:0 auto;padding:170px 36px 0">
     <div style="font-size:12.5px;font-weight:600;letter-spacing:.3em;color:#A9853B;text-transform:uppercase;margin-bottom:18px;animation:lasFadeUp .8s ease both">Resources</div>
-    <h1 style="font-family:'Archivo',sans-serif;font-weight:700;letter-spacing:-.01em;font-size:clamp(38px,4.4vw,58px);line-height:1.15;margin:0;animation:lasFadeUp .8s ease .15s both">Forms &amp; Documents</h1>
+    <h1 style="font-family:'Archivo',sans-serif;font-weight:700;letter-spacing:-.01em;font-size:clamp(38px,4.4vw,58px);line-height:1.15;margin:0;animation:lasFadeUp .8s ease .15s both">Documents</h1>
     <p style="font-size:16.5px;line-height:1.75;color:rgba(26,29,34,.72);margin:28px 0 0;max-width:600px;animation:lasFadeUp .8s ease .3s both">Key fund documents, available to qualified investors on request.</p>
   </div>
   <div style="max-width:1240px;margin:0 auto;padding:64px 36px 120px">
+    <div style="font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#A9853B;margin-bottom:28px" data-reveal="">Fund Documents</div>
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:28px" data-reveal="">
       <sc-for list="{{ documents }}" as="d" hint-placeholder-count="3">
-        <a href="{{ d.href }}" style="display:flex;flex-direction:column;gap:20px;background:#FFFFFF;border:1px solid rgba(26,29,34,.12);border-top:3px solid #C6A45C;box-shadow:0 16px 40px rgba(26,29,34,.07);padding:36px 34px;transition:transform .3s ease,box-shadow .3s ease" style-hover="transform:translateY(-5px);box-shadow:0 24px 54px rgba(26,29,34,.16)">
+        <a href="{{ d.href }}" target="_blank" rel="noopener" style="display:flex;flex-direction:column;gap:20px;background:#FFFFFF;border:1px solid rgba(26,29,34,.12);border-top:3px solid #C6A45C;box-shadow:0 16px 40px rgba(26,29,34,.07);padding:36px 34px;transition:transform .3s ease,box-shadow .3s ease" style-hover="transform:translateY(-5px);box-shadow:0 24px 54px rgba(26,29,34,.16)">
+          <div style="display:flex;align-items:center;justify-content:center;width:56px;height:56px;background:#F2EFE8;border:1px solid rgba(169,133,59,.4);font-family:'Archivo',sans-serif;font-weight:800;font-size:14px;letter-spacing:.06em;color:#A9853B">PDF</div>
+          <div>
+            <div style="font-family:'Archivo',sans-serif;font-weight:700;font-size:22px;line-height:1.3;margin-bottom:10px">{{ d.title }}</div>
+            <p style="font-size:14px;line-height:1.7;color:rgba(26,29,34,.62);margin:0">{{ d.desc }}</p>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:auto;padding-top:8px">
+            <span style="font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(26,29,34,.5)">{{ d.meta }}</span>
+            <span style="display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#A9853B">Download <span style="font-size:16px">↓</span></span>
+          </div>
+        </a>
+      </sc-for>
+    </div>
+
+    <div style="font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#A9853B;margin:80px 0 28px" data-reveal="">Annual Reports</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:28px" data-reveal="">
+      <sc-for list="{{ reports }}" as="d" hint-placeholder-count="2">
+        <a href="{{ d.href }}" target="_blank" rel="noopener" style="display:flex;flex-direction:column;gap:20px;background:#FFFFFF;border:1px solid rgba(26,29,34,.12);border-top:3px solid #C6A45C;box-shadow:0 16px 40px rgba(26,29,34,.07);padding:36px 34px;transition:transform .3s ease,box-shadow .3s ease" style-hover="transform:translateY(-5px);box-shadow:0 24px 54px rgba(26,29,34,.16)">
           <div style="display:flex;align-items:center;justify-content:center;width:56px;height:56px;background:#F2EFE8;border:1px solid rgba(169,133,59,.4);font-family:'Archivo',sans-serif;font-weight:800;font-size:14px;letter-spacing:.06em;color:#A9853B">PDF</div>
           <div>
             <div style="font-family:'Archivo',sans-serif;font-weight:700;font-size:22px;line-height:1.3;margin-bottom:10px">{{ d.title }}</div>
@@ -1229,7 +1247,7 @@
         <a sc-camel-on-click="{{ goCareers }}" style="cursor:pointer;color:rgba(242,239,232,.65)" style-hover="color:#C6A45C">Careers</a>
         <a sc-camel-on-click="{{ goAnnouncements }}" style="cursor:pointer;color:rgba(242,239,232,.65)" style-hover="color:#C6A45C">Announcements</a>
         <a sc-camel-on-click="{{ goNewsroom }}" style="cursor:pointer;color:rgba(242,239,232,.65)" style-hover="color:#C6A45C">Newsroom</a>
-        <a sc-camel-on-click="{{ goForms }}" style="cursor:pointer;color:rgba(242,239,232,.65)" style-hover="color:#C6A45C">Forms</a>
+        <a sc-camel-on-click="{{ goForms }}" style="cursor:pointer;color:rgba(242,239,232,.65)" style-hover="color:#C6A45C">Documents</a>
         <a sc-camel-on-click="{{ goContact }}" style="cursor:pointer;color:rgba(242,239,232,.65)" style-hover="color:#C6A45C">Contact</a>
       </div>
     </div>
@@ -1323,9 +1341,16 @@ class Component extends DCLogic {
 
   documents() {
     return [
-      { id: 'doc-im', title: 'Information Memorandum', desc: 'Full fund terms, strategy and risk disclosures.', meta: 'PDF · Confidential', href: '#' },
-      { id: 'doc-ts', title: 'Term Sheet', desc: 'Summary of key commercial terms of the Fund.', meta: 'PDF · 2 pages', href: '#' },
-      { id: 'doc-cp', title: 'Company Profile', desc: 'Overview of LAS Capital and the investment team.', meta: 'PDF · Brochure', href: '#' }
+      { id: 'doc-im', title: 'Information Memorandum', desc: 'Full fund terms, strategy and risk disclosures.', meta: 'PDF · Confidential', href: 'assets/information-memorandum.pdf' },
+      { id: 'doc-ts', title: 'Term Sheet', desc: 'Summary of key commercial terms of the Fund.', meta: 'PDF · 2 pages', href: 'assets/term-sheet.pdf' },
+      { id: 'doc-cp', title: 'Company Profile', desc: 'Overview of LAS Capital and the investment team.', meta: 'PDF · Brochure', href: 'assets/company-profile.pdf' }
+    ];
+  }
+
+  reports() {
+    return [
+      { id: 'rep-2025', title: '2025 Fund Report', desc: 'Full-year performance review, portfolio update and outlook.', meta: 'PDF · 2025', href: 'assets/fund-report-2025.pdf' },
+      { id: 'rep-2024', title: '2024 Year-End Fund Update', desc: 'Year-end performance summary and portfolio update.', meta: 'PDF · 2024', href: 'assets/fund-report-2024.pdf' }
     ];
   }
 
@@ -1363,6 +1388,7 @@ class Component extends DCLogic {
       backToAnnouncements: () => this.setState({ openAnn: null }),
       articles,
       documents: this.documents(),
+      reports: this.reports(),
       newsHome,
       isAnnouncements: p === 'announcements',
       isNewsroom: p === 'newsroom',
