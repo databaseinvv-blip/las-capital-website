@@ -1152,6 +1152,11 @@
     <div style="height:1px;background:rgba(26,29,34,.12);margin-bottom:44px" data-reveal=""></div>
     <div style="display:inline-block;font-size:14px;font-weight:700;letter-spacing:.02em;color:#A9853B;background:#F2EFE8;border:1px solid rgba(169,133,59,.35);padding:12px 20px;margin-bottom:32px" data-reveal="">{{ annDetail.summary }}</div>
     <p style="font-size:16.5px;line-height:1.9;color:rgba(26,29,34,.75);margin:0" data-reveal="">{{ annDetail.body }}</p>
+    <sc-if value="{{ annDetail.showReportCta }}" hint-placeholder-val="{{ false }}">
+      <div style="margin-top:44px" data-reveal="">
+        <a sc-camel-on-click="{{ goForms }}" style="cursor:pointer;display:inline-flex;align-items:center;gap:10px;background:#C6A45C;color:#0E1013;padding:16px 34px;font-weight:700;font-size:14px;letter-spacing:.1em;text-transform:uppercase" style-hover="background:#D8BC7A;color:#0E1013">View the Full Annual Report <span style="font-size:17px">→</span></a>
+      </div>
+    </sc-if>
   </div>
   </sc-if>
 
@@ -1321,6 +1326,12 @@ class Component extends DCLogic {
       <!-- { id: 'news-3', type: 'article', category: 'Market Review', title: 'Monthly Market Review | February 2026', date: 'Mar 04, 2026', iso: '2026-03-04' },-->
       <!-- { id: 'news-4', type: 'article', category: 'Geopolitics', title: 'Middle East Tensions | Market Implications', date: 'Mar 02, 2026', iso: '2026-03-02' },-->
       <!-- { id: 'news-5', type: 'article', category: 'Sector Spotlight', title: 'Healthcare Resilience in a Slowing Cycle', date: 'Feb 18, 2026', iso: '2026-02-18' },-->
+      { id: 'ann-fp25', type: 'announcement', category: 'Fund Performance', title: 'Fund Performance Report 2025', date: 'Mar 2026', iso: '2026-03-15', showReportCta: true,
+        summary: 'Fixed income +34.78% · 13.00% distribution (MYR class)',
+        body: "For the financial year ended 31 December 2025, the Fund transitioned from an opportunistic growth phase into a more balanced, income-generating and diversified structure. The year's key highlight was the fixed-income portfolio, which delivered an investment-level return of 34.78% — significantly ahead of the Fund's 20% benchmark — anchored by FS Plus Limited (RM0.36 per unit) and HAAS Asia Sdn Bhd (RM0.24 per unit). By year end the portfolio comprised fixed-income securities (48.22%), listed equities (38.79%) and unquoted equities (12.99%). MYR-class Unit Holders received total income distributions of RM0.13 per unit for the year (13% ROI), with the foreign-currency class distributing 0.11 per unit (11% ROI). LAS Plantation remains in its development phase and is expected to become income-generating in 2026." },
+      { id: 'ann-fp24', type: 'announcement', category: 'Fund Performance', title: 'Fund Performance Report 2024', date: 'Mar 2025', iso: '2025-03-15', showReportCta: true,
+        summary: 'NAV +13.28% · 13.08% distribution (MYR class)',
+        body: "For the financial year ended 31 December 2024, the Fund delivered a strong performance, with net asset value per unit rising from RM1.00 to RM1.133 — a gain of 13.28% since inception. Equities were the standout contributor, generating a total return of 117%, while the Fund's fixed-income securities added a 7.63% return on a partial-year basis with an annual yield potential above 20%. The portfolio closed the year well diversified across fixed-income securities (58.17%), quoted equities (26.14%) and unquoted equities (15.69%). MYR-class Unit Holders received total income distributions of RM0.1308 per unit for the year (13.08% ROI), with the Multicurrency class distributing 0.1108 per unit (11.08% ROI)." },
       { id: 'ann-jun26', type: 'announcement', category: 'Dividend Distribution', title: 'June 2026 Income Distribution', date: 'Jun 2026', iso: '2026-06-30',
         summary: '50% of expected return · 10%–12% p.a. funds · MYR & Multicurrency',
         body: "For the distribution period ending June 2026, income distributions are declared across the Fund's multiple sub-funds, each carrying its own expected annual return — ranging from 10% per annum to 12% per annum. In line with the Fund's semi-annual schedule, every Unit Holder receives 50% of their respective expected annual return for this period. Distributions apply to both the MYR and Multicurrency classes." },
