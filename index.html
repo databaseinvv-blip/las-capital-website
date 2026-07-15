@@ -1368,7 +1368,7 @@ class Component extends DCLogic {
   renderVals() {
     const p = this.state.page;
     const byDateDesc = (a, b) => b.iso.localeCompare(a.iso);
-    const all = this.news().map((n) => ({ ...n, go: () => this.go(n.type === 'announcement' ? 'announcements' : 'newsroom'), isArticle: n.type === 'article', isAnnouncement: n.type === 'announcement' }));
+    const all = this.news().map((n) => ({ ...n, go: () => { if (n.type === 'announcement') { this.setState({ page: 'announcements', openAnn: n.id }, () => { window.scrollTo(0, 0); requestAnimationFrame(() => this.setupReveals()); }); } else { this.go('newsroom'); } }, isArticle: n.type === 'article', isAnnouncement: n.type === 'announcement' }));
     const announcements = all.filter((n) => n.type === 'announcement').sort(byDateDesc).map((n) => ({
       ...n,
       readMore: () => { this.setState({ openAnn: n.id }, () => { window.scrollTo(0, 0); requestAnimationFrame(() => this.setupReveals()); }); }
