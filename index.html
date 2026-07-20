@@ -360,6 +360,7 @@
 
   /* ===== phone (<=560px) ===== */
   @media(max-width:560px){
+    [style*="grid-template-columns: repeat(2, 1fr)"],
     [style*="grid-template-columns: repeat(3, 1fr)"],
     [style*="grid-template-columns: repeat(4, 1fr)"],
     [style*="grid-template-columns: repeat(5, 1fr)"]{grid-template-columns:1fr!important}
@@ -703,7 +704,7 @@
             </ul>
           </div>
         </div>
-        <a href="mailto:investment@thelascapital.com" style="display:inline-flex;align-items:center;gap:10px;margin-top:34px;color:#A9853B;font-weight:700;font-size:13.5px;letter-spacing:.1em;text-transform:uppercase" style-hover="gap:16px;color:#C6A45C">Apply for this role <span style="font-size:17px">→</span></a>
+        <a href="{{ ftDetail.waApply }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;margin-top:34px;color:#A9853B;font-weight:700;font-size:13.5px;letter-spacing:.1em;text-transform:uppercase" style-hover="gap:16px;color:#C6A45C">Apply via WhatsApp <span style="font-size:17px">→</span></a>
       </div>
     </sc-if>
   </div>
@@ -734,7 +735,7 @@
         <ul style="margin:0;padding-left:20px;display:flex;flex-direction:column;gap:10px;font-size:14.5px;line-height:1.6;color:rgba(16,24,40,.72)">
           <sc-for list="{{ inDetail.learn }}" as="l" hint-placeholder-count="3"><li>{{ l }}</li></sc-for>
         </ul>
-        <a href="mailto:investment@thelascapital.com" style="display:inline-flex;align-items:center;gap:10px;margin-top:32px;color:#A9853B;font-weight:700;font-size:13.5px;letter-spacing:.1em;text-transform:uppercase" style-hover="gap:16px;color:#C6A45C">Apply now <span style="font-size:17px">→</span></a>
+        <a href="{{ inDetail.waApply }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;margin-top:32px;color:#A9853B;font-weight:700;font-size:13.5px;letter-spacing:.1em;text-transform:uppercase" style-hover="gap:16px;color:#C6A45C">Apply via WhatsApp <span style="font-size:17px">→</span></a>
       </div>
     </sc-if>
   </div>
@@ -743,7 +744,7 @@
     <div style="max-width:800px;margin:0 auto;padding:100px 36px;text-align:center" data-reveal="">
       <h2 style="font-family:'Archivo',sans-serif;font-weight:700;letter-spacing:-.01em;font-size:40px;line-height:1.25;margin:0">Don't see the right role?</h2>
       <p style="font-size:16px;line-height:1.7;color:rgba(238,241,246,.7);margin:22px auto 0;max-width:520px">We are always keen to meet talented people. Send us your résumé and tell us how you can add value.</p>
-      <a href="mailto:investment@thelascapital.com" style="display:inline-block;margin-top:38px;background:#C6A45C;color:#061024;padding:17px 40px;font-weight:700;font-size:14px;letter-spacing:.1em;text-transform:uppercase" style-hover="background:#D8BC7A;color:#061024">Send Your Résumé</a>
+      <a href="{{ waGeneral }}" target="_blank" rel="noopener" style="display:inline-block;margin-top:38px;background:#C6A45C;color:#061024;padding:17px 40px;font-weight:700;font-size:14px;letter-spacing:.1em;text-transform:uppercase" style-hover="background:#D8BC7A;color:#061024">Message Us on WhatsApp</a>
     </div>
   </div>
 </div>
@@ -1228,7 +1229,7 @@
         </div>
         <div style="background:#F5F8FC;padding:36px 40px;display:flex;flex-direction:column;gap:8px">
           <div style="font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#00338D">Mobile</div>
-          <a href="tel:+601116508178" style="font-family:'Archivo',sans-serif;font-weight:700;font-size:22px;color:#101828" style-hover="color:#00338D">+6011-5427 3560</a>
+          <a href="tel:+601154273560" style="font-family:'Archivo',sans-serif;font-weight:700;font-size:22px;color:#101828" style-hover="color:#00338D">+6011-5427 3560</a>
         </div>
         <div style="background:#F5F8FC;padding:36px 40px;display:flex;flex-direction:column;gap:8px">
           <div style="font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#00338D">Office</div>
@@ -2250,12 +2251,15 @@ class Component extends DCLogic {
     }));
     const openJob = this.state.openJob;
     const toggleJob = (id) => () => this.setState((s) => ({ openJob: s.openJob === id ? null : id }), () => { requestAnimationFrame(() => this.setupReveals()); });
+    const WA_NUMBER = '601154273560';
+    const waLink = (msg) => 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg);
     const jobCard = (j, i, prefix) => ({
       ...j,
       id: prefix + i,
       num: String(i + 1).padStart(2, '0'),
       cta: openJob === (prefix + i) ? 'Hide Details' : 'View Details →',
       cardBorder: openJob === (prefix + i) ? 'rgba(198,164,92,.7)' : 'rgba(16,24,40,.12)',
+      waApply: waLink('I want to apply for this position - ' + j.title),
       toggle: toggleJob(prefix + i)
     });
     const ftCards = this.fullTimeRoles().map((j, i) => jobCard(j, i, 'ft-'));
@@ -2355,6 +2359,7 @@ class Component extends DCLogic {
       inDetail: inDetail || {},
       showInDetail: !!inDetail,
       closeJob: () => this.setState({ openJob: null }),
+      waGeneral: waLink('I want to apply for a position at LAS Capital'),
       svcTitle: ({ 'svc-portfolio': 'Portfolio Management', 'svc-cash': 'Cash Management', 'svc-credit': 'Credit Service' })[p] || '',
       svcDesc: ({
         'svc-portfolio': 'Discretionary management of investment portfolios across our four mandates, aligned to each investor\'s objectives and risk profile.',
