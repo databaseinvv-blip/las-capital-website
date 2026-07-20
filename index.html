@@ -292,7 +292,11 @@
      NOTE: the runtime re-serializes inline styles, so attribute
      selectors below must use the NORMALISED form the DOM produces
      (space after ':' and after ',' e.g. "repeat(3, 1fr)", "0px 36px"). */
+  /* overflow-x must be `clip`, not `hidden`: `hidden` forces overflow-y:auto,
+     which makes <body> the scroll container and breaks window.scrollTo(0,0)
+     on page navigation. `clip` blocks sideways overflow without doing that. */
   html,body{overflow-x:hidden;max-width:100%}
+  @supports (overflow-x:clip){ html,body{overflow-x:clip} }
   *{min-width:0}
   img{max-width:100%;height:auto}
   .las-nav-toggle{display:none}
@@ -2045,9 +2049,20 @@
 class Component extends DCLogic {
   state = { page: 'home', openProject: -1, companyOpen: false, resourcesOpen: false, annPage: 1, openAnn: null, openArticle: null, mobileOpen: false, openJob: null };
 
+  // Reset scroll on navigation. Targets every possible scroll container and
+  // forces an instant jump, so a smooth-scroll animation can't be interrupted
+  // by the incoming page changing height mid-flight.
+  scrollTop() {
+    try { window.scrollTo({ top: 0, left: 0, behavior: 'instant' }); }
+    catch (e) { this.scrollTop(); }
+    if (document.scrollingElement) document.scrollingElement.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  }
+
   go(page) {
     this.setState({ page, openAnn: null, openArticle: null, mobileOpen: false, openJob: null }, () => {
-      window.scrollTo(0, 0);
+      this.scrollTop();
       requestAnimationFrame(() => this.setupReveals());
     });
   }
@@ -2231,10 +2246,10 @@ class Component extends DCLogic {
   renderVals() {
     const p = this.state.page;
     const byDateDesc = (a, b) => b.iso.localeCompare(a.iso);
-    const all = this.news().map((n) => ({ ...n, go: () => { if (n.type === 'announcement') { this.setState({ page: 'announcements', openAnn: n.id }, () => { window.scrollTo(0, 0); requestAnimationFrame(() => this.setupReveals()); }); } else { this.setState({ page: 'newsroom', openArticle: n.id }, () => { window.scrollTo(0, 0); requestAnimationFrame(() => this.setupReveals()); }); } }, isArticle: n.type === 'article', isAnnouncement: n.type === 'announcement' }));
+    const all = this.news().map((n) => ({ ...n, go: () => { if (n.type === 'announcement') { this.setState({ page: 'announcements', openAnn: n.id }, () => { this.scrollTop(); requestAnimationFrame(() => this.setupReveals()); }); } else { this.setState({ page: 'newsroom', openArticle: n.id }, () => { this.scrollTop(); requestAnimationFrame(() => this.setupReveals()); }); } }, isArticle: n.type === 'article', isAnnouncement: n.type === 'announcement' }));
     const announcements = all.filter((n) => n.type === 'announcement').sort(byDateDesc).map((n) => ({
       ...n,
-      readMore: () => { this.setState({ openAnn: n.id }, () => { window.scrollTo(0, 0); requestAnimationFrame(() => this.setupReveals()); }); }
+      readMore: () => { this.setState({ openAnn: n.id }, () => { this.scrollTop(); requestAnimationFrame(() => this.setupReveals()); }); }
     }));
     const annDetail = announcements.find((a) => a.id === this.state.openAnn) || null;
     const ANN_PER_PAGE = 5;
@@ -2247,7 +2262,7 @@ class Component extends DCLogic {
       bg: (i + 1) === annCur ? '#C6A45C' : '#FFFFFF',
       fg: (i + 1) === annCur ? '#061024' : 'rgba(16,24,40,.7)',
       bd: (i + 1) === annCur ? '#C6A45C' : 'rgba(16,24,40,.2)',
-      go: () => { this.setState({ annPage: i + 1 }, () => { window.scrollTo(0, 0); requestAnimationFrame(() => this.setupReveals()); }); }
+      go: () => { this.setState({ annPage: i + 1 }, () => { this.scrollTop(); requestAnimationFrame(() => this.setupReveals()); }); }
     }));
     const openJob = this.state.openJob;
     const toggleJob = (id) => () => this.setState((s) => ({ openJob: s.openJob === id ? null : id }), () => { requestAnimationFrame(() => this.setupReveals()); });
@@ -2275,7 +2290,7 @@ class Component extends DCLogic {
       .map((it) => ({
         ...it,
         num: String(it.idx + 1).padStart(2, '0'),
-        open: () => { this.setState({ page: 'portfolio', openProject: it.idx }, () => { window.scrollTo(0, 0); requestAnimationFrame(() => this.setupReveals()); }); }
+        open: () => { this.setState({ page: 'portfolio', openProject: it.idx }, () => { this.scrollTop(); requestAnimationFrame(() => this.setupReveals()); }); }
       }));
     const articles = all.filter((n) => n.type === 'article').sort(byDateDesc);
     const articleDetail = articles.find((a) => a.id === this.state.openArticle) || null;
@@ -2294,7 +2309,7 @@ class Component extends DCLogic {
       articleDetail: articleDetail || {},
       showArticleDetail: !!articleDetail,
       showArticleList: !articleDetail,
-      backToNewsroom: () => this.setState({ openArticle: null }, () => { window.scrollTo(0, 0); requestAnimationFrame(() => this.setupReveals()); }),
+      backToNewsroom: () => this.setState({ openArticle: null }, () => { this.scrollTop(); requestAnimationFrame(() => this.setupReveals()); }),
       documents: this.documents(),
       reports: this.reports(),
       newsHome,
