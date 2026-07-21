@@ -361,24 +361,24 @@
 
     [style*="height: 92vh"]{height:auto!important;min-height:600px!important}
 
-    /* ---- organisation chart: rebuild as a clean vertical stack ----
-       The desktop chart relies on horizontal connector stubs and an
-       absolutely-positioned 4-way branch bar, both of which are meaningless
-       once the rows collapse to one column. Hide them and connect the
-       stacked boxes with short vertical rules instead. */
-    .org-mid{grid-template-columns:1fr!important;gap:28px!important;align-items:stretch!important}
-    .org-mid > div{position:relative}
-    .org-mid > div + div::before{content:"";position:absolute;top:-28px;left:calc(50% - 1px);width:2px;height:28px;background:rgba(16,24,40,.35)}
-    .org-gp,.org-im,.org-imrow{flex-direction:column!important;align-items:stretch!important;width:100%!important}
-    .org-lineh{display:none!important}
-    /* box-sizing is NOT globally border-box on this site, so width:100% plus
-       the desktop side padding would overflow the column — set it explicitly. */
-    .org-box{box-sizing:border-box!important;white-space:normal!important;width:100%!important;padding-left:18px!important;padding-right:18px!important;font-size:15px!important}
-    .org-box[style*="font-size:26px"]{font-size:21px!important;padding-top:20px!important;padding-bottom:20px!important}
-    .org-im{gap:8px!important}
-    .org-im > div:last-child{text-align:center!important;padding-right:0!important}
-    .org-branch{display:none!important}
-    .org-mandates{grid-template-columns:1fr!important;gap:20px!important}
+    /* ---- organisation chart ----
+       Keep the true desktop diagram on small screens and scale it down, rather
+       than restructuring it (the connectors only make sense in the wide layout).
+       `zoom` is used deliberately over `transform:scale()` because zoom reflows
+       and so reserves the correct height; a transform would leave a large gap.
+       These rules must come AFTER the generic grid-collapse rules above so they
+       win on equal specificity. */
+    .org-mid{grid-template-columns:1fr auto 1fr!important}
+    .org-mandates{grid-template-columns:repeat(4,1fr)!important}
+    .org-investors{flex-wrap:nowrap!important}
+    .org-lineh{display:block!important}
+    .org-branch{display:block!important}
+    .org-box{white-space:nowrap!important}
+    /* Fallback for engines without `zoom`: let the chart scroll sideways. */
+    @supports not (zoom:1){
+      .org-chart{zoom:normal;overflow-x:auto;-webkit-overflow-scrolling:touch}
+      .org-chart > *{min-width:760px}
+    }
 
   }
 
@@ -397,10 +397,21 @@
     /* footer: -> single column */
     [style*="grid-template-columns: 1.7fr 1fr 1fr 1.4fr"]{grid-template-columns:1fr!important;gap:34px!important}
 
+    /* org chart: natural width is ~508px, so it only needs scaling on phones.
+       The mandate row must be re-asserted here — the generic repeat(4,1fr)
+       collapse rule above would otherwise stack it and break the diagram. */
+    .org-chart{zoom:.62}
+    .org-mandates{grid-template-columns:repeat(4,1fr)!important;gap:24px!important}
+
     /* contact cards: tighten padding and shrink long values (email/phone) so they fit */
     [style*="padding: 36px 40px"]{padding:26px 22px!important}
     a[href^="mailto:"][style*="font-size: 22px"],
     a[href^="tel:"][style*="font-size: 22px"]{font-size:18px!important}
+  }
+
+  /* ===== narrow phones (<=380px) ===== */
+  @media(max-width:380px){
+    .org-chart{zoom:.52}
   }
 </style>
 </helmet>
@@ -915,9 +926,9 @@
         <h2 style="font-family:'Archivo',sans-serif;font-weight:700;letter-spacing:-.01em;font-size:42px;line-height:1.2;margin:0">Organisation chart</h2>
       </div>
 
-      <div data-reveal="">
+      <div class="org-chart" data-reveal="">
         <!-- Investors -->
-        <div style="display:flex;justify-content:center;gap:20px;flex-wrap:wrap">
+        <div class="org-investors" style="display:flex;justify-content:center;gap:20px;flex-wrap:wrap">
           <div style="background:#C6A45C;color:#061024;font-weight:700;font-size:14px;letter-spacing:.04em;padding:16px 30px;text-align:center;min-width:150px">Investor A</div>
           <div style="background:#C6A45C;color:#061024;font-weight:700;font-size:14px;letter-spacing:.04em;padding:16px 30px;text-align:center;min-width:150px">Investor B</div>
           <div style="background:#C6A45C;color:#061024;font-weight:700;font-size:14px;letter-spacing:.04em;padding:16px 30px;text-align:center;min-width:150px">Investor C</div>
