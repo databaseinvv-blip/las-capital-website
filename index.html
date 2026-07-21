@@ -361,24 +361,6 @@
 
     [style*="height: 92vh"]{height:auto!important;min-height:600px!important}
 
-    /* ---- organisation chart ----
-       Keep the true desktop diagram on small screens and scale it down, rather
-       than restructuring it (the connectors only make sense in the wide layout).
-       `zoom` is used deliberately over `transform:scale()` because zoom reflows
-       and so reserves the correct height; a transform would leave a large gap.
-       These rules must come AFTER the generic grid-collapse rules above so they
-       win on equal specificity. */
-    .org-mid{grid-template-columns:1fr auto 1fr!important}
-    .org-mandates{grid-template-columns:repeat(4,1fr)!important}
-    .org-investors{flex-wrap:nowrap!important}
-    .org-lineh{display:block!important}
-    .org-branch{display:block!important}
-    .org-box{white-space:nowrap!important}
-    /* Fallback for engines without `zoom`: let the chart scroll sideways. */
-    @supports not (zoom:1){
-      .org-chart{zoom:normal;overflow-x:auto;-webkit-overflow-scrolling:touch}
-      .org-chart > *{min-width:760px}
-    }
 
   }
 
@@ -397,22 +379,12 @@
     /* footer: -> single column */
     [style*="grid-template-columns: 1.7fr 1fr 1fr 1.4fr"]{grid-template-columns:1fr!important;gap:34px!important}
 
-    /* org chart: natural width is ~508px, so it only needs scaling on phones.
-       The mandate row must be re-asserted here — the generic repeat(4,1fr)
-       collapse rule above would otherwise stack it and break the diagram. */
-    .org-chart{zoom:.62}
-    .org-mandates{grid-template-columns:repeat(4,1fr)!important;gap:24px!important}
-
     /* contact cards: tighten padding and shrink long values (email/phone) so they fit */
     [style*="padding: 36px 40px"]{padding:26px 22px!important}
     a[href^="mailto:"][style*="font-size: 22px"],
     a[href^="tel:"][style*="font-size: 22px"]{font-size:18px!important}
   }
 
-  /* ===== narrow phones (<=380px) ===== */
-  @media(max-width:380px){
-    .org-chart{zoom:.52}
-  }
 </style>
 </helmet>
 
@@ -926,65 +898,11 @@
         <h2 style="font-family:'Archivo',sans-serif;font-weight:700;letter-spacing:-.01em;font-size:42px;line-height:1.2;margin:0">Organisation chart</h2>
       </div>
 
-      <div class="org-chart" data-reveal="">
-        <!-- Investors -->
-        <div class="org-investors" style="display:flex;justify-content:center;gap:20px;flex-wrap:wrap">
-          <div style="background:#C6A45C;color:#061024;font-weight:700;font-size:14px;letter-spacing:.04em;padding:16px 30px;text-align:center;min-width:150px">Investor A</div>
-          <div style="background:#C6A45C;color:#061024;font-weight:700;font-size:14px;letter-spacing:.04em;padding:16px 30px;text-align:center;min-width:150px">Investor B</div>
-          <div style="background:#C6A45C;color:#061024;font-weight:700;font-size:14px;letter-spacing:.04em;padding:16px 30px;text-align:center;min-width:150px">Investor C</div>
-        </div>
-
-        <!-- connector down from investors -->
-        <div style="position:relative;height:56px;display:flex;align-items:center;justify-content:center;gap:14px">
-          <div style="position:absolute;left:50%;top:0;bottom:0;width:2px;background:rgba(16,24,40,.35)"></div>
-          <div style="position:absolute;left:52%;font-size:12.5px;font-style:italic;color:rgba(16,24,40,.6);white-space:nowrap;padding-left:12px">10% return p.a.</div>
-        </div>
-
-        <!-- Middle row: GP · LAS CAPITAL · IM -->
-        <div class="org-mid" style="display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:0">
-          <!-- General Partners + connector to center -->
-          <div class="org-gp" style="display:flex;align-items:center">
-            <div class="org-box" style="background:#0A1526;color:#EEF1F6;font-weight:700;font-size:14px;padding:18px 26px;text-align:center;white-space:nowrap">General Partners</div>
-            <div class="org-lineh" style="flex:1;height:2px;background:rgba(16,24,40,.35);min-width:24px"></div>
-          </div>
-          <!-- LAS CAPITAL -->
-          <div class="org-box" style="background:#C6A45C;color:#061024;font-family:'Archivo',sans-serif;font-weight:800;font-size:26px;letter-spacing:.06em;padding:26px 54px;text-align:center">LAS CAPITAL</div>
-          <!-- IM + connector -->
-          <div class="org-im" style="display:flex;flex-direction:column;align-items:flex-end;gap:10px">
-            <div class="org-imrow" style="display:flex;align-items:center;width:100%">
-              <div class="org-lineh" style="flex:1;height:2px;background:rgba(16,24,40,.35);min-width:24px"></div>
-              <div class="org-box" style="background:#0A1526;color:#EEF1F6;padding:16px 24px;text-align:center;white-space:nowrap">
-                <div style="font-weight:700;font-size:14px">Investment Manager</div>
-                <div style="font-size:12px;color:rgba(238,241,246,.7);margin-top:4px">Aureus Strategies PE Sdn Bhd</div>
-              </div>
-            </div>
-            <div style="font-size:12px;font-style:italic;color:rgba(16,24,40,.6);padding-right:2px">Regulated by SC Malaysia</div>
-          </div>
-        </div>
-
-        <!-- connector down + branch to 4 -->
-        <div style="display:flex;flex-direction:column;align-items:center">
-          <div style="width:2px;height:40px;background:rgba(16,24,40,.35)"></div>
-        </div>
-        <div class="org-branch" style="position:relative;height:36px">
-          <div style="position:absolute;top:0;left:12.5%;right:12.5%;height:2px;background:rgba(16,24,40,.35)"></div>
-          <div style="position:absolute;top:0;bottom:0;left:12.5%;width:2px;background:rgba(16,24,40,.35)"></div>
-          <div style="position:absolute;top:0;bottom:0;left:37.5%;width:2px;background:rgba(16,24,40,.35)"></div>
-          <div style="position:absolute;top:0;bottom:0;left:62.5%;width:2px;background:rgba(16,24,40,.35)"></div>
-          <div style="position:absolute;top:0;bottom:0;left:87.5%;width:2px;background:rgba(16,24,40,.35)"></div>
-        </div>
-
-        <!-- 4 mandate boxes -->
-        <div class="org-mandates" style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px">
-          <sc-for list="{{ orgMandates }}" as="o" hint-placeholder-count="4">
-            <div style="display:flex;flex-direction:column;align-items:center;gap:0">
-              <div style="width:100%;background:#0E1D33;color:#EEF1F6;font-weight:700;font-size:14px;line-height:1.35;padding:18px 14px;text-align:center;min-height:64px;display:flex;align-items:center;justify-content:center">{{ o.title }}</div>
-              <div style="width:2px;height:26px;background:rgba(16,24,40,.35)"></div>
-              <div style="width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:8px solid rgba(16,24,40,.45);margin-top:-2px"></div>
-              <div style="font-size:13px;line-height:1.5;color:#00338D;text-align:center;font-weight:600;margin-top:12px">{{ o.outcome }}</div>
-            </div>
-          </sc-for>
-        </div>
+      <div data-reveal="">
+        <a href="assets/org-chart.png" target="_blank" rel="noopener" style="display:block;cursor:zoom-in">
+          <img src="assets/org-chart.png" alt="LAS Capital organisation chart: investors contribute capital to LAS Capital for a 10% return per annum. LAS Capital is directed by its General Partners and managed by Aureus Strategies PE Sdn Bhd, an investment manager regulated by the Securities Commission Malaysia. Capital is deployed across four mandates — merger and acquisition into listed and non-listed companies, funding (ECF/PE) into non-listed companies, share investment into public listed companies, and debt financing into listed and non-listed companies." style="display:block;width:100%;height:auto;margin:0 auto">
+        </a>
+        <div style="font-size:12.5px;color:rgba(16,24,40,.5);margin-top:18px;text-align:center">Tap the chart to view it full size.</div>
       </div>
     </div>
   </div>
