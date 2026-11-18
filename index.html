@@ -302,6 +302,80 @@
   .las-nav-toggle{display:none}
   @media(min-width:861px){ .las-mobile-nav{display:none!important} }
 
+  /* ===== Fund page: income distribution timeline ===== */
+  /* Layout: sticky intro on the left, year-grouped timeline on the right */
+  .las-dh{display:grid;grid-template-columns:minmax(0,380px) minmax(0,1fr);gap:96px;align-items:start}
+  .las-dh-side{position:sticky;top:140px}
+  .las-dh-intro{font-size:16px;line-height:1.75;color:rgba(16,24,40,.68);margin:22px 0 0}
+  .las-dh-stats{margin:36px 0 0;padding:0;border-top:1px solid rgba(16,24,40,.12)}
+  .las-dh-stat{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:16px 0;border-bottom:1px solid rgba(16,24,40,.12)}
+  .las-dh-stat dt{font-size:13px;color:rgba(16,24,40,.6)}
+  .las-dh-stat dd{margin:0;font-family:'Archivo',sans-serif;font-weight:700;font-size:16px;color:#00338D;text-align:right}
+  .las-dh-note{font-size:12px;line-height:1.7;color:rgba(16,24,40,.45);margin:24px 0 0}
+
+  /* Track + scroll fill */
+  .las-dist-tl{position:relative;padding-left:44px}
+  .las-dist-track{position:absolute;left:9px;top:10px;bottom:10px;width:2px;background:rgba(198,164,92,.22)}
+  .las-dist-fill{position:absolute;left:0;top:0;width:100%;height:var(--las-dist-p,0%);background:#C6A45C;transition:height .15s linear}
+  .las-dist-node{position:relative}
+  .las-dist-dot{position:absolute;left:-40px;top:22px;width:12px;height:12px;border-radius:50%;background:#FFFFFF;border:2px solid #C6A45C;box-shadow:0 0 0 5px #FFFFFF;z-index:1;transition:background .3s,border-color .3s}
+  .las-dist-node.is-passed .las-dist-dot{background:#C6A45C}
+  .las-dist-node.has-report .las-dist-dot{border-color:#00338D}
+  .las-dist-node.has-report.is-passed .las-dist-dot{background:#00338D}
+  .las-dist-node.is-upcoming .las-dist-dot{border-style:dashed;background:#FFFFFF!important}
+
+  /* Year header */
+  .las-dh-year + .las-dh-year{margin-top:56px}
+  .las-dh-yearhead{margin-bottom:18px}
+  .las-dh-yeardot{left:-44px;top:4px;width:20px;height:20px;border-width:3px}
+  .las-dh-yearlabel{font-family:'Archivo',sans-serif;font-weight:800;font-size:28px;line-height:1;color:#101828;letter-spacing:-.01em}
+  .las-dh-yearsub{font-size:12.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#A9853B;margin-top:10px}
+
+  /* Entry card */
+  .las-dh-entry + .las-dh-entry{margin-top:14px}
+  .las-dh-card{background:#FFFFFF;border:1px solid rgba(16,24,40,.12);padding:18px 24px 8px;transition:border-color .2s,box-shadow .2s}
+  .las-dh-card:hover{border-color:rgba(198,164,92,.6);box-shadow:0 10px 30px rgba(16,24,40,.07)}
+  .las-dh-cardhead{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding-bottom:12px;border-bottom:1px solid rgba(16,24,40,.08)}
+  .las-dh-period{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(16,24,40,.5)}
+  .las-dh-title{font-family:'Archivo',sans-serif;font-weight:700;font-size:18px;line-height:1.3;margin:4px 0 0;color:#101828}
+  .las-dh-chip{flex-shrink:0;font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#1F7A4D;background:rgba(31,122,77,.08);padding:5px 10px;border-radius:999px}
+  .las-dh-row{display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding:11px 0}
+  .las-dh-row + .las-dh-row{border-top:1px solid rgba(16,24,40,.06)}
+  .las-dh-k{font-size:14px;color:rgba(16,24,40,.62)}
+  .las-dh-v{font-family:'Archivo',sans-serif;font-weight:700;font-size:17px;color:#00338D;text-align:right;font-variant-numeric:tabular-nums}
+
+  /* Upcoming */
+  .las-dist-node.is-upcoming .las-dh-card{border-style:dashed;background:#FAFBFD}
+  .las-dist-node.is-upcoming .las-dh-title,.las-dist-node.is-upcoming .las-dh-v{color:rgba(16,24,40,.45)}
+  .las-dist-node.is-upcoming .las-dh-chip{color:#A9853B;background:rgba(198,164,92,.12)}
+
+  /* Annual report row */
+  .las-dh-report{display:flex;align-items:center;gap:16px;padding:16px 20px;background:#F5F8FC;border:1px solid rgba(0,51,141,.18);border-left:3px solid #00338D;color:#101828;text-decoration:none;transition:background .2s,border-color .2s}
+  .las-dh-report:hover{background:#EEF3FB;border-color:#00338D}
+  .las-dh-pdf{flex-shrink:0;width:40px;height:46px;display:flex;align-items:flex-end;justify-content:center;padding-bottom:7px;background:#FFFFFF;border:1px solid rgba(0,51,141,.25);font-size:10px;font-weight:800;letter-spacing:.06em;color:#00338D}
+  .las-dh-reporttext{flex:1;display:flex;flex-direction:column;gap:3px}
+  .las-dh-reporttitle{font-family:'Archivo',sans-serif;font-weight:700;font-size:16px;color:#00338D}
+  .las-dh-reportsub{font-size:13px;color:rgba(16,24,40,.6)}
+  .las-dh-reportcta{flex-shrink:0;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#A9853B}
+  .las-dh-entry.has-report .las-dist-dot{top:28px}
+
+  @media(max-width:1080px){
+    .las-dh{grid-template-columns:minmax(0,1fr);gap:48px}
+    .las-dh-side{position:static;max-width:640px}
+  }
+  @media(max-width:560px){
+    .las-dist-tl{padding-left:34px}
+    .las-dist-track{left:7px}
+    .las-dist-dot{left:-32px}
+    .las-dh-yeardot{left:-35px}
+    .las-dh-card{padding:16px 16px 6px}
+    .las-dh-title{font-size:17px}
+    .las-dh-k{font-size:13px}
+    .las-dh-v{font-size:15px}
+    .las-dh-report{padding:14px 14px;gap:12px;flex-wrap:wrap}
+    .las-dh-reportcta{width:100%;padding-left:52px}
+  }
+
   /* ===== tablet & phone (<=860px) ===== */
   @media(max-width:860px){
     .las-desktop-nav{display:none!important}
@@ -400,14 +474,8 @@
     <a class="las-nav-toggle" sc-camel-on-click="{{ toggleMobile }}" style="cursor:pointer;align-items:center;justify-content:center;width:44px;height:44px;color:#EEF1F6;font-size:23px;line-height:1;flex-shrink:0">☰</a>
     <div class="las-desktop-nav" style="display:flex;align-items:center;gap:clamp(16px,2.6vw,34px);font-size:13.5px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap">
       <a sc-camel-on-click="{{ goHome }}" style="cursor:pointer;color:rgba(238,241,246,.85);white-space:nowrap" style-hover="color:#C6A45C">Home</a>
-      <div style="position:relative;align-self:stretch;display:flex;align-items:center" sc-camel-on-mouse-enter="{{ openCompany }}" sc-camel-on-mouse-leave="{{ closeCompany }}">
-        <a sc-camel-on-click="{{ goAbout }}" style="cursor:pointer;color:rgba(238,241,246,.85);white-space:nowrap;display:flex;align-items:center;gap:6px" style-hover="color:#C6A45C">Company <span style="font-size:9px;opacity:.7">▼</span></a>
-        <div style="position:absolute;top:100%;left:0;display:{{ companyMenuDisplay }};background:#0E1B33;border:1px solid rgba(198,164,92,.25);min-width:190px;box-shadow:0 14px 34px rgba(0,0,0,.4);padding:8px 0;z-index:20">
-          <a sc-camel-on-click="{{ goAbout }}" style="cursor:pointer;display:block;padding:13px 22px;color:rgba(238,241,246,.82);letter-spacing:.06em;font-size:13px" style-hover="background:rgba(198,164,92,.16);color:#C6A45C">About Us</a>
-          <a sc-camel-on-click="{{ goFund }}" style="cursor:pointer;display:block;padding:13px 22px;color:rgba(238,241,246,.82);letter-spacing:.06em;font-size:13px" style-hover="background:rgba(198,164,92,.16);color:#C6A45C">The Fund</a>
-        </div>
-      </div>
-      <a sc-camel-on-click="{{ goPortfolio }}" style="cursor:pointer;color:rgba(238,241,246,.85);white-space:nowrap" style-hover="color:#C6A45C">Portfolio</a>
+      <a sc-camel-on-click="{{ goAbout }}" style="cursor:pointer;color:rgba(238,241,246,.85);white-space:nowrap" style-hover="color:#C6A45C">About Us</a>
+      <a sc-camel-on-click="{{ goFund }}" style="cursor:pointer;color:rgba(238,241,246,.85);white-space:nowrap" style-hover="color:#C6A45C">The Fund</a>
       <a sc-camel-on-click="{{ goTeam }}" style="cursor:pointer;color:rgba(238,241,246,.85);white-space:nowrap" style-hover="color:#C6A45C">Leadership</a>
       <a sc-camel-on-click="{{ goCareers }}" style="cursor:pointer;color:rgba(238,241,246,.85);white-space:nowrap" style-hover="color:#C6A45C">Careers</a>
       <div style="position:relative;align-self:stretch;display:flex;align-items:center" sc-camel-on-mouse-enter="{{ openResources }}" sc-camel-on-mouse-leave="{{ closeResources }}">
@@ -425,7 +493,6 @@
     <a sc-camel-on-click="{{ goHome }}" style="cursor:pointer;display:block;padding:13px 2px;color:rgba(238,241,246,.85);font-size:14px;letter-spacing:.08em;text-transform:uppercase;border-bottom:1px solid rgba(238,241,246,.08)" style-hover="color:#C6A45C">Home</a>
     <a sc-camel-on-click="{{ goAbout }}" style="cursor:pointer;display:block;padding:13px 2px;color:rgba(238,241,246,.85);font-size:14px;letter-spacing:.08em;text-transform:uppercase;border-bottom:1px solid rgba(238,241,246,.08)" style-hover="color:#C6A45C">About Us</a>
     <a sc-camel-on-click="{{ goFund }}" style="cursor:pointer;display:block;padding:13px 2px;color:rgba(238,241,246,.85);font-size:14px;letter-spacing:.08em;text-transform:uppercase;border-bottom:1px solid rgba(238,241,246,.08)" style-hover="color:#C6A45C">The Fund</a>
-    <a sc-camel-on-click="{{ goPortfolio }}" style="cursor:pointer;display:block;padding:13px 2px;color:rgba(238,241,246,.85);font-size:14px;letter-spacing:.08em;text-transform:uppercase;border-bottom:1px solid rgba(238,241,246,.08)" style-hover="color:#C6A45C">Portfolio</a>
     <a sc-camel-on-click="{{ goTeam }}" style="cursor:pointer;display:block;padding:13px 2px;color:rgba(238,241,246,.85);font-size:14px;letter-spacing:.08em;text-transform:uppercase;border-bottom:1px solid rgba(238,241,246,.08)" style-hover="color:#C6A45C">Leadership</a>
     <a sc-camel-on-click="{{ goCareers }}" style="cursor:pointer;display:block;padding:13px 2px;color:rgba(238,241,246,.85);font-size:14px;letter-spacing:.08em;text-transform:uppercase;border-bottom:1px solid rgba(238,241,246,.08)" style-hover="color:#C6A45C">Careers</a>
     <a sc-camel-on-click="{{ goAnnouncements }}" style="cursor:pointer;display:block;padding:13px 2px;color:rgba(238,241,246,.85);font-size:14px;letter-spacing:.08em;text-transform:uppercase;border-bottom:1px solid rgba(238,241,246,.08)" style-hover="color:#C6A45C">Announcements</a>
@@ -492,43 +559,6 @@
       </div>
     </div>
   </div>
-
-  <!-- Performance teaser -->
-  <sc-if value="{{ showPerformance }}" hint-placeholder-val="{{ true }}">
-  <div style="max-width:1240px;margin:0 auto;padding:100px 36px">
-    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:40px;flex-wrap:wrap;margin-bottom:60px" data-reveal="">
-      <div>
-        <div style="font-size:12.5px;font-weight:600;letter-spacing:.3em;color:#00338D;text-transform:uppercase;margin-bottom:22px">Highlights</div>
-        <h2 style="font-family:'Archivo',sans-serif;font-weight:700;letter-spacing:-.01em;font-size:42px;line-height:1.2;margin:0">Top performing investments</h2>
-      </div>
-      <a sc-camel-on-click="{{ goPortfolio }}" style="cursor:pointer;display:inline-flex;align-items:center;gap:10px;color:#00338D;font-weight:600;font-size:14px;letter-spacing:.12em;text-transform:uppercase" style-hover="gap:16px;color:#C6A45C">Full Portfolio <span style="font-size:18px">→</span></a>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:28px" data-reveal="">
-      <sc-for list="{{ topPortfolio }}" as="pf" hint-placeholder-count="3">
-        <a sc-camel-on-click="{{ pf.open }}" style="cursor:pointer;display:flex;flex-direction:column;background:#FFFFFF;border:1px solid rgba(16,24,40,.1);border-top:3px solid #C6A45C;box-shadow:0 16px 40px rgba(16,24,40,.09);padding:32px 30px;color:#101828;min-height:260px" style-hover="border-color:rgba(198,164,92,.7)">
-          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px">
-            <div style="font-family:'Archivo',sans-serif;font-weight:700;font-size:13px;color:#A9853B;letter-spacing:.18em">{{ pf.num }}</div>
-            <div style="font-size:10.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#A9853B;border:1px solid rgba(169,133,59,.45);padding:5px 11px">{{ pf.status }}</div>
-          </div>
-          <div style="font-family:'Archivo',sans-serif;font-weight:700;font-size:22px;line-height:1.3;margin:18px 0 8px;min-height:58px">{{ pf.name }}</div>
-          <div style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(16,24,40,.55)">{{ pf.sector }} · {{ pf.region }}</div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;border-top:1px solid rgba(16,24,40,.1);margin-top:auto;padding-top:20px">
-            <div style="display:flex;flex-direction:column;gap:5px">
-              <div style="font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(16,24,40,.5)">Return / Unit</div>
-              <div style="font-family:'Archivo',sans-serif;font-weight:700;font-size:20px;color:#A9853B">{{ pf.rpu }}</div>
-            </div>
-            <div style="display:flex;flex-direction:column;gap:5px">
-              <div style="font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(16,24,40,.5)">Instrument</div>
-              <div style="font-size:14px;font-weight:600;padding-top:4px">{{ pf.instrument }}</div>
-            </div>
-          </div>
-          <div style="font-size:12.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#A9853B;margin-top:22px">View Details →</div>
-        </a>
-      </sc-for>
-    </div>
-    <div style="font-size:12.5px;color:rgba(16,24,40,.5);margin-top:36px" data-reveal="">For confidentiality, portfolio companies are described by sector and mandate. Past performance is not indicative of future results.</div>
-  </div>
-  </sc-if>
 
   <!-- CTA band -->
   <div style="position:relative;overflow:hidden;background:#0A1526;color:#EEF1F6">
@@ -908,50 +938,134 @@
     </div>
   </div>
 
+  <!-- Fund composition -->
+  <div style="background:#F5F8FC;color:#101828">
+    <div style="max-width:1240px;margin:0 auto;padding:100px 36px">
+      <div style="margin-bottom:56px" data-reveal="">
+        <div style="font-size:12.5px;font-weight:600;letter-spacing:.3em;color:#C6A45C;text-transform:uppercase;margin-bottom:22px">Composition</div>
+        <h2 style="font-family:'Archivo',sans-serif;font-weight:700;letter-spacing:-.01em;font-size:42px;line-height:1.2;margin:0">Fund composition</h2>
+      </div>
+
+      <div style="margin-bottom:90px" data-reveal="">
+        <h3 style="font-family:'Archivo',sans-serif;font-weight:700;letter-spacing:-.01em;font-size:22px;margin:0 0 30px">Key portfolio metrics</h3>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(16,24,40,.12);border:1px solid rgba(16,24,40,.12)">
+          <sc-for list="{{ keyMetrics }}" as="m" hint-placeholder-count="4">
+            <div style="background:#FFFFFF;padding:28px 26px;display:flex;flex-direction:column;gap:8px">
+              <span style="font-family:'Archivo',sans-serif;font-weight:700;font-size:30px;color:#A9853B;white-space:nowrap">{{ m.value }}</span>
+              <span style="font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:rgba(16,24,40,.6)">{{ m.label }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:44px" data-reveal="">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:28px">
+          <div style="font-size:12.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#00338D">Investment Sector</div>
+          <div style="position:relative;width:190px;height:190px;border-radius:50%;background:conic-gradient(#2E6FC7 0 118.8deg,#BE8A22 118.8deg 219.6deg,#00968B 219.6deg 316.8deg,#9C5A2C 316.8deg 349.2deg,#6A5AB8 349.2deg 360deg)">
+            <div style="position:absolute;inset:30px;border-radius:50%;background:#F5F8FC"></div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 9px; width: 270px">
+            <sc-for list="{{ compSector }}" as="c" hint-placeholder-count="5">
+              <div style="display:flex;align-items:center;gap:10px;font-size:13px"><span style="width:11px;height:11px;flex-shrink:0;background:{{ c.c }}"></span><span style="color:rgba(16,24,40,.78);flex:1">{{ c.name }}</span><span style="font-weight:700;color:#00338D">{{ c.val }}</span></div>
+            </sc-for>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:28px">
+          <div style="font-size:12.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#00338D">Asset Class</div>
+          <div style="position:relative;width:190px;height:190px;border-radius:50%;background:conic-gradient(#2E6FC7 0 216deg,#BE8A22 216deg 327.6deg,#00968B 327.6deg 360deg)">
+            <div style="position:absolute;inset:30px;border-radius:50%;background:#F5F8FC"></div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 9px; width: 270px">
+            <sc-for list="{{ compAsset }}" as="c" hint-placeholder-count="3">
+              <div style="display:flex;align-items:center;gap:10px;font-size:13px"><span style="width:11px;height:11px;flex-shrink:0;background:{{ c.c }}"></span><span style="color:rgba(16,24,40,.78);flex:1">{{ c.name }}</span><span style="font-weight:700;color:#00338D">{{ c.val }}</span></div>
+            </sc-for>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:28px">
+          <div style="font-size:12.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#00338D">Vintage</div>
+          <div style="position:relative;width:190px;height:190px;border-radius:50%;background:conic-gradient(#2E6FC7 0 176.4deg,#BE8A22 176.4deg 327.6deg,#00968B 327.6deg 360deg)">
+            <div style="position:absolute;inset:30px;border-radius:50%;background:#F5F8FC"></div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 9px; width: 270px">
+            <sc-for list="{{ compVintage }}" as="c" hint-placeholder-count="3">
+              <div style="display:flex;align-items:center;gap:10px;font-size:13px"><span style="width:11px;height:11px;flex-shrink:0;background:{{ c.c }}"></span><span style="color:rgba(16,24,40,.78);flex:1">{{ c.name }}</span><span style="font-weight:700;color:#00338D">{{ c.val }}</span></div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+      <div style="font-size:12px;color:rgba(16,24,40,.45);margin-top:44px;line-height:1.7" data-reveal="">1. Fund composition charts based on capital deployed and may not sum to 100% due to rounding.&nbsp;&nbsp; 2. Vintage year represents the weighted-average at time of investment made.</div>
+    </div>
+  </div>
+
   <!-- Performance -->
   <sc-if value="{{ showPerformance }}" hint-placeholder-val="{{ true }}">
-  <!-- Historical performance snapshot -->
+  <!-- Income distribution history (timeline) -->
   <div style="background:#FFFFFF;color:#101828">
-    <div style="max-width:1240px;margin:0 auto;padding:48px 36px 100px">
-      <div style="margin-bottom:56px" data-reveal="">
-        <div style="font-size:12.5px;font-weight:600;letter-spacing:.3em;color:#00338D;text-transform:uppercase;margin-bottom:22px">Historical Performance</div>
-        <h2 style="font-family:'Archivo',sans-serif;font-weight:700;letter-spacing:-.01em;font-size:42px;line-height:1.2;margin:0">Performance snapshot</h2>
-      </div>
+    <div style="max-width:1240px;margin:0 auto;padding:100px 36px 110px">
+      <div class="las-dh">
 
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-bottom:80px" data-reveal="">
-        <sc-for list="{{ kpis }}" as="k" hint-placeholder-count="4">
-          <div style="background:#F5F8FC;border-top:3px solid #C6A45C;box-shadow:0 16px 40px rgba(16,24,40,.08);padding:36px 30px;display:flex;flex-direction:column;gap:16px">
-            <div style="font-size:13px;font-weight:600;line-height:1.4;color:rgba(16,24,40,.65)">{{ k.label }}</div>
-            <div style="font-family:'Archivo',sans-serif;font-weight:800;font-size:46px;color:#00338D;letter-spacing:-.01em">{{ k.value }}</div>
-          </div>
-        </sc-for>
-      </div>
+        <!-- Left: sticky intro -->
+        <aside class="las-dh-side">
+          <div style="font-size:12.5px;font-weight:600;letter-spacing:.3em;color:#00338D;text-transform:uppercase;margin-bottom:22px">Income Distribution</div>
+          <h2 style="font-family:'Archivo',sans-serif;font-weight:700;letter-spacing:-.01em;font-size:42px;line-height:1.15;margin:0">Distribution history</h2>
+          <p class="las-dh-intro">Income is paid to Unit Holders twice a year, in June and December. Each financial year closes with an audited annual report.</p>
+          <dl class="las-dh-stats">
+            <sc-for list="{{ distStats }}" as="s" hint-placeholder-count="3">
+              <div class="las-dh-stat"><dt>{{ s.label }}</dt><dd>{{ s.value }}</dd></div>
+            </sc-for>
+          </dl>
+          <p class="las-dh-note">Average is the mean of full-year distributions for the MYR class (FY2024: 13.08%, FY2025: 13.00%). Rates are as declared for each period. Past distributions are not indicative of future results.</p>
+        </aside>
 
-      <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:32px" data-reveal="">
-        <h3 style="font-family:'Archivo',sans-serif;font-weight:700;letter-spacing:-.01em;font-size:24px;margin:0">Annual Return</h3>
-        <span style="font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(16,24,40,.5)">breakdown</span>
+        <!-- Right: timeline -->
+        <div class="las-dist-tl">
+          <div class="las-dist-track"><div class="las-dist-fill"></div></div>
+          <sc-for list="{{ distYears }}" as="y" hint-placeholder-count="3">
+            <section class="las-dh-year">
+              <div class="las-dist-node las-dh-yearhead">
+                <div class="las-dist-dot las-dh-yeardot"></div>
+                <div class="las-dh-yearlabel">{{ y.year }}</div>
+                <div class="las-dh-yearsub">{{ y.sub }}</div>
+              </div>
+
+              <sc-for list="{{ y.entries }}" as="d" hint-placeholder-count="2">
+                <div class="las-dist-node las-dh-entry {{ d.cls }}" data-reveal="">
+                  <div class="las-dist-dot"></div>
+                  <article class="las-dh-card">
+                    <header class="las-dh-cardhead">
+                      <div>
+                        <div class="las-dh-period">{{ d.period }}</div>
+                        <h3 class="las-dh-title">{{ d.title }}</h3>
+                      </div>
+                      <span class="las-dh-chip">{{ d.tag }}</span>
+                    </header>
+                    <div class="las-dh-rows">
+                      <sc-for list="{{ d.lines }}" as="l" hint-placeholder-count="1">
+                        <div class="las-dh-row"><span class="las-dh-k">{{ l.k }}</span><span class="las-dh-v">{{ l.v }}</span></div>
+                      </sc-for>
+                    </div>
+                  </article>
+                </div>
+              </sc-for>
+
+              <sc-for list="{{ y.reports }}" as="r" hint-placeholder-count="1">
+                <div class="las-dist-node las-dh-entry has-report" data-reveal="">
+                  <div class="las-dist-dot"></div>
+                  <a class="las-dh-report" href="{{ r.href }}" target="_blank" rel="noopener">
+                    <span class="las-dh-pdf">PDF</span>
+                    <span class="las-dh-reporttext">
+                      <span class="las-dh-reporttitle">{{ r.title }}</span>
+                      <span class="las-dh-reportsub">{{ r.sub }}</span>
+                    </span>
+                    <span class="las-dh-reportcta">Download →</span>
+                  </a>
+                </div>
+              </sc-for>
+            </section>
+          </sc-for>
+        </div>
+
       </div>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:56px" data-reveal="">
-        <div>
-          <div style="font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#00338D;padding-bottom:14px;border-bottom:2px solid #C6A45C">Investment Sector</div>
-          <sc-for list="{{ arSector }}" as="r" hint-placeholder-count="6">
-            <div style="display:flex;justify-content:space-between;gap:16px;padding:15px 0;border-bottom:1px solid rgba(16,24,40,.1);font-size:14.5px"><span style="color:rgba(16,24,40,.78)">{{ r.name }}</span><span style="font-weight:700">{{ r.val }}</span></div>
-          </sc-for>
-        </div>
-        <div>
-          <div style="font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#00338D;padding-bottom:14px;border-bottom:2px solid #C6A45C">Asset Class</div>
-          <sc-for list="{{ arAsset }}" as="r" hint-placeholder-count="4">
-            <div style="display:flex;justify-content:space-between;gap:16px;padding:15px 0;border-bottom:1px solid rgba(16,24,40,.1);font-size:14.5px"><span style="color:rgba(16,24,40,.78)">{{ r.name }}</span><span style="font-weight:700">{{ r.val }}</span></div>
-          </sc-for>
-        </div>
-        <div>
-          <div style="font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#00338D;padding-bottom:14px;border-bottom:2px solid #C6A45C">Financial Year</div>
-          <sc-for list="{{ arYear }}" as="r" hint-placeholder-count="3">
-            <div style="display:flex;justify-content:space-between;gap:16px;padding:15px 0;border-bottom:1px solid rgba(16,24,40,.1);font-size:14.5px"><span style="color:rgba(16,24,40,.78)">{{ r.name }}</span><span style="font-weight:700">{{ r.val }}</span></div>
-          </sc-for>
-        </div>
-      </div>
-      <div style="font-size:12px;color:rgba(16,24,40,.45);margin-top:36px;line-height:1.7" data-reveal="">Annual returns represent active investments during the year. Past performance is not indicative of future results.</div>
     </div>
   </div>
 
@@ -984,164 +1098,12 @@
 </div>
 </sc-if>
 
-<!-- ==================== PORTFOLIO ==================== -->
-<sc-if value="{{ isPortfolio }}" hint-placeholder-val="{{ false }}">
-<div data-screen-label="Portfolio">
-  <div style="position:relative;height:38vh;min-height:300px;overflow:hidden">
-    <div style="position:absolute;inset:0;background-image:url(&quot;assets/cta-banner.jpg&quot;);background-size:cover;background-position:center;background-repeat:no-repeat"></div>
-    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(6,16,36,.82) 0%,rgba(6,16,36,.5) 55%,rgba(6,16,36,.6) 100%);pointer-events:none"></div>
-    <div style="position: relative; max-width: 1240px; margin: 0 auto; padding: 0 36px; height: 400px; display: flex; flex-direction: column; justify-content: center; pointer-events: none; color: #EEF1F6">
-      
-      <h1 style="font-family:'Archivo',sans-serif;font-weight:700;letter-spacing:-.01em;font-size:clamp(38px,4.4vw,58px);line-height:1.15;margin:0;max-width:760px;animation:lasFadeUp .8s ease .15s both">Where our capital is at work</h1>
-    </div>
-  </div>
-
-  <!-- Fund composition -->
-  <div style="background:#FFFFFF;color:#101828">
-    <div style="max-width:1240px;margin:0 auto;padding:100px 36px">
-      <div style="margin-bottom:56px" data-reveal="">
-        <div style="font-size:12.5px;font-weight:600;letter-spacing:.3em;color:#C6A45C;text-transform:uppercase;margin-bottom:22px">Composition</div>
-        <h2 style="font-family:'Archivo',sans-serif;font-weight:700;letter-spacing:-.01em;font-size:42px;line-height:1.2;margin:0">Fund composition</h2>
-      </div>
-
-      <div style="margin-bottom:90px" data-reveal="">
-        <h3 style="font-family:'Archivo',sans-serif;font-weight:700;letter-spacing:-.01em;font-size:22px;margin:0 0 30px">Key portfolio metrics</h3>
-        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(16,24,40,.12);border:1px solid rgba(16,24,40,.12)">
-          <sc-for list="{{ keyMetrics }}" as="m" hint-placeholder-count="4">
-            <div style="background:#F5F8FC;padding:28px 26px;display:flex;flex-direction:column;gap:8px">
-              <span style="font-family:'Archivo',sans-serif;font-weight:700;font-size:30px;color:#A9853B;white-space:nowrap">{{ m.value }}</span>
-              <span style="font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:rgba(16,24,40,.6)">{{ m.label }}</span>
-            </div>
-          </sc-for>
-        </div>
-      </div>
-
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:44px" data-reveal="">
-        <div style="display:flex;flex-direction:column;align-items:center;gap:28px">
-          <div style="font-size:12.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#00338D">Investment Sector</div>
-          <div style="position:relative;width:190px;height:190px;border-radius:50%;background:conic-gradient(#2E6FC7 0 136.8deg,#BE8A22 136.8deg 234deg,#00968B 234deg 277.2deg,#9C5A2C 277.2deg 316.8deg,#6A5AB8 316.8deg 338.4deg,#C25F49 338.4deg 352.8deg,#A85C93 352.8deg 360deg)">
-            <div style="position:absolute;inset:30px;border-radius:50%;background:#FFFFFF"></div>
-          </div>
-          <div style="display: flex; flex-direction: column; gap: 9px; width: 270px">
-            <sc-for list="{{ compSector }}" as="c" hint-placeholder-count="6">
-              <div style="display:flex;align-items:center;gap:10px;font-size:13px"><span style="width:11px;height:11px;flex-shrink:0;background:{{ c.c }}"></span><span style="color:rgba(16,24,40,.78);flex:1">{{ c.name }}</span><span style="font-weight:700;color:#00338D">{{ c.val }}</span></div>
-            </sc-for>
-          </div>
-        </div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:28px">
-          <div style="font-size:12.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#00338D">Asset Class</div>
-          <div style="position:relative;width:190px;height:190px;border-radius:50%;background:conic-gradient(#2E6FC7 0 270deg,#BE8A22 270deg 313.2deg,#00968B 313.2deg 345.6deg,#9C5A2C 345.6deg 360deg)">
-            <div style="position:absolute;inset:30px;border-radius:50%;background:#FFFFFF"></div>
-          </div>
-          <div style="display: flex; flex-direction: column; gap: 9px; width: 270px">
-            <sc-for list="{{ compAsset }}" as="c" hint-placeholder-count="4">
-              <div style="display:flex;align-items:center;gap:10px;font-size:13px"><span style="width:11px;height:11px;flex-shrink:0;background:{{ c.c }}"></span><span style="color:rgba(16,24,40,.78);flex:1">{{ c.name }}</span><span style="font-weight:700;color:#00338D">{{ c.val }}</span></div>
-            </sc-for>
-          </div>
-        </div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:28px">
-          <div style="font-size:12.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#00338D">Vintage</div>
-          <div style="position:relative;width:190px;height:190px;border-radius:50%;background:conic-gradient(#2E6FC7 0 266.4deg,#BE8A22 266.4deg 334.8deg,#00968B 334.8deg 360deg)">
-            <div style="position:absolute;inset:30px;border-radius:50%;background:#FFFFFF"></div>
-          </div>
-          <div style="display: flex; flex-direction: column; gap: 9px; width: 270px">
-            <sc-for list="{{ compVintage }}" as="c" hint-placeholder-count="3">
-              <div style="display:flex;align-items:center;gap:10px;font-size:13px"><span style="width:11px;height:11px;flex-shrink:0;background:{{ c.c }}"></span><span style="color:rgba(16,24,40,.78);flex:1">{{ c.name }}</span><span style="font-weight:700;color:#00338D">{{ c.val }}</span></div>
-            </sc-for>
-          </div>
-        </div>
-      </div>
-      <div style="font-size:12px;color:rgba(16,24,40,.45);margin-top:44px;line-height:1.7" data-reveal="">1. Fund composition charts based on capital deployed and may not sum to 100% due to rounding.&nbsp;&nbsp; 2. Vintage year represents the weighted-average at time of investment made.</div>
-    </div>
-  </div>
-
-  <!-- Portfolio -->
-  <div style="background:#F5F8FC;color:#101828">
-    <div style="max-width:1240px;margin:0 auto;padding:100px 36px">
-    <div style="margin-bottom:56px" data-reveal="">
-      <div style="font-size:12.5px;font-weight:600;letter-spacing:.3em;color:#00338D;text-transform:uppercase;margin-bottom:22px">Active Investments</div>
-      <h2 style="font-family:'Archivo',sans-serif;font-weight:700;letter-spacing:-.01em;font-size:42px;line-height:1.2;margin:0">Top Performing Portfolio</h2>
-      <p style="font-size:16px;line-height:1.75;color:rgba(16,24,40,.68);margin:22px 0 0;max-width:620px">A selection of our active investments across two regions. For confidentiality, portfolio companies are described by sector and mandate; full details are disclosed to investors in the Information Memorandum.</p>
-    </div>
-
-    <div style="display:flex;flex-direction:column;gap:24px" data-reveal="">
-    <sc-for list="{{ portfolioRows }}" as="row" hint-placeholder-count="3">
-    <div style="display:flex;flex-direction:column;gap:24px">
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
-      <sc-for list="{{ row.cards }}" as="pf" hint-placeholder-count="3">
-        <a sc-camel-on-click="{{ pf.toggle }}" style="cursor: pointer; display: flex; flex-direction: column; background: #FFFFFF; border: 1px solid {{ pf.cardBorderLight }}; box-shadow: 0 16px 40px rgba(16,24,40,.09); padding: 32px 30px; color: #101828; min-height: 260px" style-hover="border-color:rgba(198,164,92,.7)">
-          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px">
-            <div style="font-family:'Archivo',sans-serif;font-weight:700;font-size:13px;color:#A9853B;letter-spacing:.18em">{{ pf.num }}</div>
-            <div style="font-size:10.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#A9853B;border:1px solid rgba(169,133,59,.45);padding:5px 11px">{{ pf.status }}</div>
-          </div>
-          <div style="font-family:'Archivo',sans-serif;font-weight:700;font-size:22px;line-height:1.3;margin:18px 0 8px;min-height:58px">{{ pf.name }}</div>
-          <div style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(16,24,40,.55)">{{ pf.sector }} · {{ pf.region }}</div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;border-top:1px solid rgba(16,24,40,.1);margin-top:auto;padding-top:20px">
-            <div style="display:flex;flex-direction:column;gap:5px">
-              <div style="font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(16,24,40,.5)">Return / Unit</div>
-              <div style="font-family:'Archivo',sans-serif;font-weight:700;font-size:20px;color:#A9853B">{{ pf.rpu }}</div>
-            </div>
-            <div style="display:flex;flex-direction:column;gap:5px">
-              <div style="font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(16,24,40,.5)">Instrument</div>
-              <div style="font-size:14px;font-weight:600;padding-top:4px">{{ pf.instrument }}</div>
-            </div>
-          </div>
-          <div style="font-size:12.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#A9853B;margin-top:22px">{{ pf.cta }}</div>
-        </a>
-      </sc-for>
-    </div>
-
-    <sc-if value="{{ row.hasOpen }}" hint-placeholder-val="{{ false }}">
-      <div style="background:#FFFFFF;border:1px solid rgba(0,51,141,.45);box-shadow:0 16px 40px rgba(16,24,40,.09);padding:44px 40px">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:24px;margin-bottom:26px">
-          <div style="display:flex;flex-direction:column;gap:8px">
-            <div style="font-family:'Archivo',sans-serif;font-weight:700;font-size:13px;color:#00338D;letter-spacing:.18em">{{ row.openPf.num }}</div>
-            <h3 style="font-family:'Archivo',sans-serif;font-weight:700;letter-spacing:-.01em;font-size:30px;line-height:1.25;margin:0">{{ row.openPf.name }}</h3>
-          </div>
-          <a sc-camel-on-click="{{ closeProject }}" style="cursor:pointer;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(16,24,40,.55);border:1px solid rgba(16,24,40,.2);padding:9px 16px;flex-shrink:0" style-hover="color:#101828;border-color:rgba(16,24,40,.5)">Close ✕</a>
-        </div>
-        <div style="display:grid;grid-template-columns:1fr 300px;gap:60px;align-items:start">
-          <p style="font-size:15px;line-height:1.85;color:rgba(16,24,40,.72);margin:0;max-width:640px">{{ row.openPf.desc }}</p>
-          <div style="display:flex;flex-direction:column;gap:1px;background:rgba(16,24,40,.1);border:1px solid rgba(16,24,40,.1)">
-            <div style="background:#F5F8FC;padding:18px 22px;display:flex;justify-content:space-between;gap:16px;font-size:13.5px"><span style="color:rgba(16,24,40,.55)">Sector</span><span style="font-weight:600">{{ row.openPf.sector }}</span></div>
-            <div style="background:#F5F8FC;padding:18px 22px;display:flex;justify-content:space-between;gap:16px;font-size:13.5px"><span style="color:rgba(16,24,40,.55)">Geography</span><span style="font-weight:600">{{ row.openPf.region }}</span></div>
-            <div style="background:#F5F8FC;padding:18px 22px;display:flex;justify-content:space-between;gap:16px;font-size:13.5px"><span style="color:rgba(16,24,40,.55)">Instrument</span><span style="font-weight:600">{{ row.openPf.instrument }}</span></div>
-            <div style="background:#F5F8FC;padding:18px 22px;display:flex;justify-content:space-between;gap:16px;font-size:13.5px"><span style="color:rgba(16,24,40,.55)">Return per Unit</span><span style="font-weight:600;color:#A9853B">{{ row.openPf.rpu }}</span></div>
-            <div style="background:#F5F8FC;padding:18px 22px;display:flex;justify-content:space-between;gap:16px;font-size:13.5px"><span style="color:rgba(16,24,40,.55)">Status</span><span style="font-weight:600">{{ row.openPf.status }}</span></div>
-          </div>
-        </div>
-      </div>
-    </sc-if>
-    </div>
-    </sc-for>
-    </div>
-
-    </div>
-  </div>
-
-
-  <!-- Closing CTA (bright) -->
-  <div style="background:#FFFFFF;border-top:1px solid rgba(16,24,40,.08)">
-    <div style="max-width:1240px;margin:0 auto;padding:90px 36px;display:flex;justify-content:space-between;align-items:center;gap:32px;flex-wrap:wrap" data-reveal="">
-      <div style="font-size:14px;color:rgba(16,24,40,.6);max-width:520px;line-height:1.7">Portfolio as of March 2026. Descriptions are indicative; company identities and detailed metrics are available to qualified investors upon request.</div>
-      <a sc-camel-on-click="{{ goContact }}" style="cursor:pointer;display:inline-block;background:#C6A45C;color:#061024;padding:16px 36px;font-weight:700;font-size:14px;letter-spacing:.1em;text-transform:uppercase" style-hover="background:#D8BC7A;color:#061024">Request Full Portfolio Detail</a>
-    </div>
-  </div>
-</div>
-</sc-if>
-
 <!-- ==================== TEAM ==================== -->
 <sc-if value="{{ isTeam }}" hint-placeholder-val="{{ false }}">
 <div data-screen-label="Leadership">
-  <div style="max-width:1240px;margin:0 auto;padding:170px 36px 100px">
+  <div style="max-width:1240px;margin:0 auto;padding:170px 36px 0px">
     <div style="font-size:12.5px;font-weight:600;letter-spacing:.3em;color:#00338D;text-transform:uppercase;margin-bottom:18px;animation:lasFadeUp .8s ease both">Leadership</div>
-    <h1 style="font-family:'Archivo',sans-serif;font-weight:700;letter-spacing:-.01em;font-size:clamp(38px,4.4vw,58px);line-height:1.15;margin:0 0 64px;animation:lasFadeUp .8s ease .15s both">The team behind the fund</h1>
-
-    <!-- Group corporate photo -->
-    <div style="position:relative;height:560px;animation:lasFadeUp .8s ease .3s both">
-      <div style="position:absolute;inset:0;background-image:url(&quot;assets/team-group.jpg&quot;);background-size:cover;background-position:center;background-repeat:no-repeat"></div>
-      <div style="position:absolute;top:-16px;right:-16px;bottom:16px;left:16px;border:1px solid rgba(198,164,92,.4);pointer-events:none"></div>
-    </div>
+    <h1 style="font-family:'Archivo',sans-serif;font-weight:700;letter-spacing:-.01em;font-size:clamp(38px,4.4vw,58px);line-height:1.15;margin:0;animation:lasFadeUp .8s ease .15s both">The team behind the fund</h1>
 
   </div>
 
@@ -1950,7 +1912,6 @@
         <div style="display:flex;flex-direction:column;gap:14px;font-size:14px">
           <a sc-camel-on-click="{{ goAbout }}" style="cursor:pointer;color:rgba(238,241,246,.6)" style-hover="color:#C6A45C">About Us</a>
           <a sc-camel-on-click="{{ goFund }}" style="cursor:pointer;color:rgba(238,241,246,.6)" style-hover="color:#C6A45C">The Fund</a>
-          <a sc-camel-on-click="{{ goPortfolio }}" style="cursor:pointer;color:rgba(238,241,246,.6)" style-hover="color:#C6A45C">Portfolio</a>
           <a sc-camel-on-click="{{ goTeam }}" style="cursor:pointer;color:rgba(238,241,246,.6)" style-hover="color:#C6A45C">Leadership</a>
           <a sc-camel-on-click="{{ goCareers }}" style="cursor:pointer;color:rgba(238,241,246,.6)" style-hover="color:#C6A45C">Careers</a>
         </div>
@@ -2240,7 +2201,7 @@ class Component extends DCLogic {
       .map((it) => ({
         ...it,
         num: String(it.idx + 1).padStart(2, '0'),
-        open: () => { this.setState({ page: 'portfolio', openProject: it.idx }, () => { this.scrollTop(); requestAnimationFrame(() => this.setupReveals()); }); }
+        open: () => { this.setState({ page: 'fund', openProject: it.idx }, () => { this.scrollTop(); requestAnimationFrame(() => this.setupReveals()); }); }
       }));
     const articles = all.filter((n) => n.type === 'article').sort(byDateDesc);
     const articleDetail = articles.find((a) => a.id === this.state.openArticle) || null;
@@ -2311,7 +2272,7 @@ class Component extends DCLogic {
       isCareers: p === 'careers',
       goCareers: () => this.go('careers'),
       isPortfolio: p === 'portfolio',
-      goPortfolio: () => this.go('portfolio'),
+      goPortfolio: () => this.go('fund'), // old Portfolio page is now part of The Fund
       companyMenuDisplay: this.state.companyOpen ? 'block' : 'none',
       openCompany: () => this.setState({ companyOpen: true }),
       closeCompany: () => this.setState({ companyOpen: false }),
@@ -2409,30 +2370,40 @@ class Component extends DCLogic {
           'Any early redemption request prior to expiry is subject to the absolute discretion of the Investment Manager and the General Partner. If approved, the Unit Holder is liable to pay an early redemption fee of not less than five percent (5%) of the redemption amount, or such higher percentage as may be determined.'
         ], bullets: [] }
       ],
-      kpis: [
-        { value: '22.7%', label: 'Annual Return Since Inception' },
-        { value: 'x 2.5', label: 'NAV Growth Multiple' },
-        { value: 'x 0.26', label: 'Realization Multiple (DPI)' },
-        { value: '13.1%', label: 'Annual Income Distribution' }
+      // Income distribution history (Fund page timeline), grouped by financial year, oldest first.
+      // To add a period: copy an entry block and change period/title/lines.
+      // When the year's annual report is out, add it under that year's "reports" (the PDF goes in assets/).
+      // For a period not yet declared, use cls: 'is-upcoming'.
+      distStats: [
+        { value: '5', label: 'Distributions paid' },
+        { value: 'June & December', label: 'Payment schedule' },
+        { value: '13.04%', label: 'Average distribution per annum' }
       ],
-      arSector: [
-        { name: 'Healthcare', val: '15%' },
-        { name: 'Financial Service', val: '30%' },
-        { name: 'Consumer', val: '36%' },
-        { name: 'Real Estate', val: '24%' },
-        { name: 'Plantation', val: '16%' },
-        { name: 'Food & Beverage', val: '15%' },
-        { name: 'Others', val: '24%' }
-      ],
-      arAsset: [
-        { name: 'Fixed Income Securities', val: '21.2%' },
-        { name: 'Listed Equities', val: '3.4%' },
-        { name: 'Unquoted Equities', val: '—' },
-        { name: 'Cash & Deposits', val: '2.5%' }
-      ],
-      arYear: [
-        { name: 'Year 2024', val: '27.4%' },
-        { name: 'Year 2025', val: '18.1%' },
+      distYears: [
+        { year: '2024', sub: 'Financial year · 13.08% total (MYR class)',
+          entries: [
+            { period: 'June 2024', title: 'Interim distribution', tag: 'Paid', cls: '',
+              lines: [ { k: 'MYR class', v: '6.00%' } ] },
+            { period: 'December 2024', title: 'Year-end distribution', tag: 'Paid', cls: '',
+              lines: [ { k: 'MYR class', v: '7.08%' }, { k: 'Multicurrency class', v: '6.08%' } ] }
+          ],
+          reports: [ { title: '2024 Annual Report', sub: 'Audited · full-year performance review', href: 'assets/fund-report-2024.pdf' } ] },
+        { year: '2025', sub: 'Financial year · 13.00% total (MYR class)',
+          entries: [
+            { period: 'June 2025', title: 'Interim distribution', tag: 'Paid', cls: '',
+              lines: [ { k: 'MYR class', v: '6.00%' } ] },
+            { period: 'December 2025', title: 'Year-end distribution', tag: 'Paid', cls: '',
+              lines: [ { k: 'MYR class', v: '7.00%' }, { k: 'Multicurrency class', v: '6.00%' } ] }
+          ],
+          reports: [ { title: '2025 Annual Report', sub: 'Audited · full-year performance review', href: 'assets/fund-report-2025.pdf' } ] },
+        { year: '2026', sub: 'Financial year · in progress',
+          entries: [
+            { period: 'June 2026', title: 'Interim distribution', tag: 'Paid', cls: '',
+              lines: [ { k: 'Payout', v: '50% of expected annual return' }, { k: 'Sub-fund expected return', v: '10% – 12% p.a.' }, { k: 'Classes', v: 'MYR & Multicurrency' } ] },
+            { period: 'December 2026', title: 'Year-end distribution', tag: 'Upcoming', cls: 'is-upcoming',
+              lines: [ { k: 'Status', v: 'To be declared' }, { k: '2026 Annual Report', v: 'After year-end' } ] }
+          ],
+          reports: [] }
       ],
       keyMetrics: [
         { value: '90%', label: 'Deployment Ratio' },
@@ -2448,24 +2419,21 @@ class Component extends DCLogic {
         { id: 'topsec-fb', label: 'Food & Beverage' }
       ],
       compSector: [
-        { name: 'Healthcare', val: '38%', c: '#2E6FC7' },
-        { name: 'Financial Service', val: '27%', c: '#BE8A22' },
-        { name: 'Consumer', val: '12%', c: '#00968B' },
-        { name: 'Plantation', val: '11%', c: '#9C5A2C' },
-        { name: 'Real Estate', val: '6%', c: '#6A5AB8' },
-        { name: 'F&B', val: '4%', c: '#C25F49' },
-        { name: 'Others', val: '2%', c: '#A85C93' }
+        { name: 'Real Estate', val: '33%', c: '#2E6FC7' },
+        { name: 'Financial', val: '28%', c: '#BE8A22' },
+        { name: 'Healthcare', val: '27%', c: '#00968B' },
+        { name: 'Plantation', val: '9%', c: '#9C5A2C' },
+        { name: 'Others', val: '3%', c: '#6A5AB8' }
       ],
       compAsset: [
-        { name: 'Fixed Income Equities', val: '75%', c: '#2E6FC7' },
-        { name: 'Listed Equities', val: '12%', c: '#BE8A22' },
-        { name: 'Cash & Deposit', val: '9%', c: '#00968B' },
-        { name: 'Unquoted Equities', val: '4%', c: '#9C5A2C' }
+        { name: 'Listed Equities', val: '60%', c: '#2E6FC7' },
+        { name: 'Fixed Income', val: '31%', c: '#BE8A22' },
+        { name: 'Unquoted Equities', val: '9%', c: '#00968B' }
       ],
       compVintage: [
-        { name: '2025', val: '74%', c: '#2E6FC7' },
-        { name: '2024', val: '19%', c: '#BE8A22' },
-        { name: '2026', val: '7%', c: '#00968B' }
+        { name: '2024', val: '49%', c: '#2E6FC7' },
+        { name: '2026', val: '42%', c: '#BE8A22' },
+        { name: '2025', val: '9%', c: '#00968B' }
       ],
       terms: [
         { label: 'Fund Size', value: 'RM100 million' },
@@ -2505,4 +2473,25 @@ class Component extends DCLogic {
 </script>
 
 
+<script>
+/* Fund page distribution timeline: fill the gold line and light up dots as the visitor scrolls. */
+(function () {
+  function update() {
+    var tl = document.querySelector('.las-dist-tl');
+    if (!tl) return;
+    var r = tl.getBoundingClientRect();
+    var mark = window.innerHeight * 0.6; // point on screen the line "draws" to
+    var p = Math.max(0, Math.min(1, (mark - r.top) / r.height));
+    tl.style.setProperty('--las-dist-p', (p * 100).toFixed(1) + '%');
+    var nodes = tl.querySelectorAll('.las-dist-node');
+    for (var i = 0; i < nodes.length; i++) {
+      var d = nodes[i].querySelector('.las-dist-dot');
+      if (d) nodes[i].classList.toggle('is-passed', d.getBoundingClientRect().top < mark);
+    }
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  setInterval(update, 500); // also catches page switches inside the site
+})();
+</script>
 </body></html>
