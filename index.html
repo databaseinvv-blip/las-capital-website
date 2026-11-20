@@ -279,6 +279,8 @@
   body{margin:0;background:#FFFFFF;color:#101828;font-family:'Hanken Grotesk',sans-serif;-webkit-font-smoothing:antialiased}
   a{color:#101828;text-decoration:none}
   a:hover{color:#00338D}
+  /* Investor Portal button: inline gold text otherwise beats the hover colour */
+  a.las-portal-btn:hover{background:#C6A45C!important;color:#061024!important}
   image-slot{color:rgba(16,24,40,.7)}
   image-slot::part(ring){border-color:rgba(16,24,40,.3)}
   image-slot::part(frame){background:rgba(16,24,40,.06)}
@@ -486,7 +488,7 @@
           <a sc-camel-on-click="{{ goForms }}" style="cursor:pointer;display:block;padding:13px 22px;color:rgba(238,241,246,.82);letter-spacing:.06em;font-size:13px" style-hover="background:rgba(198,164,92,.16);color:#C6A45C">Documents</a>
         </div>
       </div>
-      <a href="https://app.myfundhubs.com/investor/las-capital" target="_blank" rel="noopener" style="cursor:pointer;border:1px solid #C6A45C;color:#C6A45C;padding:11px 24px;letter-spacing:.1em;font-size:12.5px;white-space:nowrap" style-hover="background:#C6A45C;color:#061024">Investor Portal</a>
+      <a class="las-portal-btn" href="https://app.myfundhubs.com/investor/las-capital" target="_blank" rel="noopener" style="cursor:pointer;border:1px solid #C6A45C;color:#C6A45C;padding:11px 24px;letter-spacing:.1em;font-size:12.5px;white-space:nowrap" style-hover="background:#C6A45C;color:#061024">Investor Portal</a>
     </div>
   </div>
   <div class="las-mobile-nav" style="display:{{ mobileMenuDisplay }};background:#0A1526;border-top:1px solid rgba(198,164,92,.2);padding:6px 22px 18px">
@@ -498,7 +500,7 @@
     <a sc-camel-on-click="{{ goAnnouncements }}" style="cursor:pointer;display:block;padding:13px 2px;color:rgba(238,241,246,.85);font-size:14px;letter-spacing:.08em;text-transform:uppercase;border-bottom:1px solid rgba(238,241,246,.08)" style-hover="color:#C6A45C">Announcements</a>
     <a sc-camel-on-click="{{ goNewsroom }}" style="cursor:pointer;display:block;padding:13px 2px;color:rgba(238,241,246,.85);font-size:14px;letter-spacing:.08em;text-transform:uppercase;border-bottom:1px solid rgba(238,241,246,.08)" style-hover="color:#C6A45C">Newsroom</a>
     <a sc-camel-on-click="{{ goForms }}" style="cursor:pointer;display:block;padding:13px 2px;color:rgba(238,241,246,.85);font-size:14px;letter-spacing:.08em;text-transform:uppercase;border-bottom:1px solid rgba(238,241,246,.08)" style-hover="color:#C6A45C">Documents</a>
-    <a href="https://app.myfundhubs.com/investor/las-capital" target="_blank" rel="noopener" style="cursor:pointer;display:block;margin-top:14px;text-align:center;border:1px solid #C6A45C;color:#C6A45C;padding:13px;letter-spacing:.1em;font-size:13px;text-transform:uppercase" style-hover="background:#C6A45C;color:#061024">Investor Portal</a>
+    <a class="las-portal-btn" href="https://app.myfundhubs.com/investor/las-capital" target="_blank" rel="noopener" style="cursor:pointer;display:block;margin-top:14px;text-align:center;border:1px solid #C6A45C;color:#C6A45C;padding:13px;letter-spacing:.1em;font-size:13px;text-transform:uppercase" style-hover="background:#C6A45C;color:#061024">Investor Portal</a>
   </div>
 </div>
 
